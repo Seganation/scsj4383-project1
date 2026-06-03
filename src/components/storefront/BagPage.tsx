@@ -1,7 +1,7 @@
 "use client";
 
-import { useClientCart } from "@/app/hooks/use-client-cart";
-import { useSession } from "@/app/lib/auth-client";
+import { useClientCart } from "@/hooks/use-client-cart";
+import { useSession } from "@/lib/auth-client";
 import { ShoppingBag, Trash2, Plus, Minus, ArrowUpRight, AlertTriangle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import prisma from "@/app/lib/db";
-import { emailService } from "@/app/lib/email";
+import prisma from "@/lib/db";
+import { emailService } from "@/lib/email";
 
 export async function PATCH(
   request: NextRequest,

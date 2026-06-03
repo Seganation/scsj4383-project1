@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useClientCart } from "@/app/hooks/use-client-cart";
+import { useClientCart } from "@/hooks/use-client-cart";
 import { Check, Plus } from "lucide-react";
-import type { CartItem } from "@/app/lib/interfaces";
+import type { CartItem } from "@/lib/interfaces";
 
 interface RelatedProductCardProps {
   item: {

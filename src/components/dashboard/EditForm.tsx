@@ -24,13 +24,13 @@ import Link from "next/link";
 import { SubmitButton } from "../SubmitButtons";
 import { Switch } from "@/components/ui/switch";
 import { Image } from "@/components";
-import { categories } from "@/app/lib/categories";
+import { categories } from "@/lib/categories";
 import { useState, useRef } from "react";
 import { useActionState } from "react";
 import { createProduct, editProduct } from "@/app/actions";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
-import { productSchema } from "@/app/lib/zodSchemas";
+import { productSchema } from "@/lib/zodSchemas";
 import toast from "react-hot-toast";
 import {
   DndContext,
@@ -190,7 +190,7 @@ export function EditForm({ data }: iAppProps) {
       // Upload new images (deferred, just like create page)
       let uploadedUrls: string[] = [];
       if (newImages.length > 0) {
-        const { uploadFiles, isImageFile } = await import("@/utils/ut-client");
+        const { uploadFiles, isImageFile } = await import("@/lib/ut-client");
         const valid = newImages.every(
           (f) => isImageFile(f) && f.size <= 10 * 1024 * 1024
         );

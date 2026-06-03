@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { authClient } from "@/app/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import { Eye, EyeOff, Loader2, ArrowLeft, XCircle, ArrowUpRight } from "lucide-react";
 

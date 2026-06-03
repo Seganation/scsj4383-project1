@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import { AddToCartButton } from "@/components/storefront/AddToCartButton";
 import { ImageSliderWithZoom } from "@/components/storefront/ImageSliderWithZoom";
 import { RelatedProductCard } from "@/components/storefront/RelatedProductCard";

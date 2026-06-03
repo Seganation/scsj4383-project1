@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { orderApi } from "@/app/lib/api";
+import { orderApi } from "@/lib/api";
 import toast from "react-hot-toast";
 
 // Query keys for orders

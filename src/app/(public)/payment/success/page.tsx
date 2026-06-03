@@ -3,10 +3,10 @@
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { useSession } from "@/app/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import { CheckCircle, Package, Mail, User, ArrowUpRight, Loader2 } from "lucide-react";
-import { CartStorage } from "@/app/lib/cart-client";
+import { CartStorage } from "@/lib/cart-client";
 
 function PaymentSuccessContent() {
   const { data: session } = useSession();

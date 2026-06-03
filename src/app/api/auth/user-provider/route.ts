@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/app/lib/db";
-import { rateLimit, RATE_LIMITS } from "@/app/lib/rate-limit";
+import prisma from "@/lib/db";
+import { rateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export async function GET(req: NextRequest) {
   const rl = await rateLimit(req, RATE_LIMITS.auth);

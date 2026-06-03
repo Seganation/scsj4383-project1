@@ -43,7 +43,7 @@ General API: 60 requests/minute per IP
 ```
 
 **Files Created:**
-- `src/app/lib/rate-limit.ts` - Lightweight rate limiter (~200 lines)
+- `src/lib/rate-limit.ts` - Lightweight rate limiter (~200 lines)
 
 **Files Modified:**
 - `src/app/api/checkout/route.ts` - Added checkout rate limiting
@@ -222,7 +222,7 @@ STRIPE_WEBHOOK_SECRET=whsec_xxxxx
 ### Rate Limiter Health
 Check rate limiter cache size (should stay under 10,000):
 ```typescript
-import { rateLimiter } from "@/app/lib/rate-limit";
+import { rateLimiter } from "@/lib/rate-limit";
 console.log(rateLimiter.size()); // Current entries
 ```
 

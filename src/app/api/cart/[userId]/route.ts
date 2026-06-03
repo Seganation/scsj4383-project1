@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import prisma from "@/app/lib/db";
-import { Cart } from "@/app/lib/interfaces";
+import prisma from "@/lib/db";
+import { Cart } from "@/lib/interfaces";
 import {
   getCartFromStorage,
   clearCartFromStorage,
-} from "@/app/lib/cart-storage";
+} from "@/lib/cart-storage";
 import { headers } from "next/headers";
 
 export async function GET(

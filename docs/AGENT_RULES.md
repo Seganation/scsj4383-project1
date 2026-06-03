@@ -11,7 +11,7 @@
 ### 2. **Plugin Parity is Critical**
 - Client plugins MUST match server plugins exactly
 - If server doesn't have `magicLink` plugin, client shouldn't have `magicLinkClient()`
-- Always check both `src/lib/auth.ts` and `src/app/lib/auth-client.ts` for plugin consistency
+- Always check both `src/lib/auth.ts` and `src/lib/auth-client.ts` for plugin consistency
 - Only include plugins that are actually used and configured
 
 ### 3. **Minimal Configuration for Development**
@@ -39,7 +39,7 @@ const handleSignOut = async () => {
 
 ### 5. **File Structure Rules**
 - Server auth config: `src/lib/auth.ts`
-- Client auth config: `src/app/lib/auth-client.ts`
+- Client auth config: `src/lib/auth-client.ts`
 - API route: `src/app/api/auth/[...betterAuth]/route.ts`
 - Import auth type: `import type { auth } from "@/lib/auth"`
 
@@ -101,7 +101,7 @@ await authClient.signIn.social({
 grep -r "plugins:" src/lib/auth.ts
 
 # Check client plugins  
-grep -r "plugins:" src/app/lib/auth-client.ts
+grep -r "plugins:" src/lib/auth-client.ts
 
 # Ensure they match
 ```
@@ -166,7 +166,7 @@ export const auth = betterAuth({
 });
 ```
 
-### Client Auth Config (`src/app/lib/auth-client.ts`)
+### Client Auth Config (`src/lib/auth-client.ts`)
 ```typescript
 import { createAuthClient } from "better-auth/react";
 import { adminClient } from "better-auth/client/plugins";

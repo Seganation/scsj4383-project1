@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useInfiniteSearch } from "@/app/hooks/use-products";
+import { useInfiniteSearch } from "@/hooks/use-products";
 import {
   ProductCard,
   LoadingProductCard,

@@ -85,7 +85,7 @@ npm run db:seed
 ### **3. API Security**
 - ✅ Input validation on all API endpoints
 - ✅ SQL injection protection via Prisma ORM
-- ✅ Rate limiting configured (check middleware.ts)
+- ✅ Rate limiting configured (check src/middleware.ts)
 - ✅ CORS policies properly configured
 
 ### **4. Payment Security**

@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Check, Plus } from "lucide-react";
-import { useClientCart } from "@/app/hooks/use-client-cart";
-import type { CartItem } from "@/app/lib/interfaces";
+import { useClientCart } from "@/hooks/use-client-cart";
+import type { CartItem } from "@/lib/interfaces";
 
 export interface ProductTileData {
   id: string;

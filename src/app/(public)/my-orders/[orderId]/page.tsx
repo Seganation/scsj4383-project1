@@ -4,7 +4,7 @@ import { use } from "react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { OrderDetailsPage } from "@/components/storefront/OrderDetailsPage";
-import { useSession } from "@/app/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 
 function HybridOrderDetailsContent({ referenceId }: { referenceId: string }) {
   const searchParams = useSearchParams();

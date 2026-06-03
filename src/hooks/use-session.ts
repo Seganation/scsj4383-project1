@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession as useBetterAuthSession } from "@/app/lib/auth-client";
+import { useSession as useBetterAuthSession } from "@/lib/auth-client";
 import { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 

@@ -356,7 +356,7 @@ curl "http://localhost:3000/api/cron?secret=SECRET&job=daily-report"
 
 **Option 1: Comment out in code**
 ```typescript
-// src/app/lib/cron-jobs.ts
+// src/lib/cron-jobs.ts
 
 // Daily at 9 AM: Sales report
 if (hour === 9) {
@@ -373,7 +373,7 @@ curl "https://archcoolstore.com/api/cron?secret=$SECRET&job=verifications"
 
 ### Adjust Schedules
 
-Edit `src/app/lib/cron-jobs.ts`:
+Edit `src/lib/cron-jobs.ts`:
 
 ```typescript
 // Change from every 6 hours to every 12 hours
@@ -498,4 +498,4 @@ Before enabling cron jobs:
 **Need Help?**
 - Check logs: `docker logs <container> | grep CRON`
 - Test manually: `curl "https://archcoolstore.com/api/cron?secret=SECRET"`
-- Review job code: `src/app/lib/cron-jobs.ts`
+- Review job code: `src/lib/cron-jobs.ts`

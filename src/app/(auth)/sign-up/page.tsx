@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { Eye, EyeOff, Loader2, ArrowUpRight } from "lucide-react";
-import { emailOtp, signIn } from "@/app/lib/auth-client";
+import { emailOtp, signIn } from "@/lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
 
 export default function SignUpPage() {

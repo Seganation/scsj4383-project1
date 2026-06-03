@@ -1,9 +1,9 @@
 "use client";
 
-import { useClientCart } from "@/app/hooks/use-client-cart";
-import { useSession } from "@/app/lib/auth-client";
+import { useClientCart } from "@/hooks/use-client-cart";
+import { useSession } from "@/lib/auth-client";
 import { Check, Eye, Plus, ShieldAlert } from "lucide-react";
-import { CartItem } from "@/app/lib/interfaces";
+import { CartItem } from "@/lib/interfaces";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 

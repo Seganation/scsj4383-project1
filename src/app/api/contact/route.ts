@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { rateLimit, RATE_LIMITS } from "@/app/lib/rate-limit";
+import { rateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export async function POST(req: NextRequest) {
   // Rate limiting - prevent spam abuse
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
     }
     // Send email to support
-    const { emailService } = await import("@/app/lib/email");
+    const { emailService } = await import("@/lib/email");
     await emailService.sendContactSupport({ name, email, message });
     return NextResponse.json({ success: true });
   } catch (error) {

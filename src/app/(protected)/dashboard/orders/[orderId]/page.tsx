@@ -3,7 +3,7 @@ import OrderAdminDetailsPage from "@/components/dashboard/OrderAdminDetailsPage"
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { notFound } from "next/navigation";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 
 interface OrderAdminDetailsRouteProps {
   params: {

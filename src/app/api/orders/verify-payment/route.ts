@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/app/lib/db";
-import { stripe, syncStripeDataToDB } from "@/app/lib/stripe";
+import prisma from "@/lib/db";
+import { stripe, syncStripeDataToDB } from "@/lib/stripe";
 
 export async function GET(req: NextRequest) {
   try {

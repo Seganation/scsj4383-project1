@@ -1,5 +1,5 @@
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
-import { productApi } from "@/app/lib/api";
+import { productApi } from "@/lib/api";
 
 // Query keys for products
 export const productKeys = {

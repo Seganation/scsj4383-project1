@@ -199,7 +199,7 @@ plugins: [
 
 ### Email Templates
 ```typescript
-// src/app/lib/email.ts
+// src/lib/email.ts
 otpPasswordReset: (otp: string) => ({
   subject: "🔒 Reset Your ArchCool Password",
   html: `...`, // Professional email template
@@ -257,8 +257,8 @@ otpPasswordReset: (otp: string) => ({
 
 ### Configuration
 - `src/auth.ts` - Better Auth configuration with email OTP plugin
-- `src/app/lib/email.ts` - Email service and templates
-- `src/app/lib/auth-client.ts` - Better Auth client configuration
+- `src/lib/email.ts` - Email service and templates
+- `src/lib/auth-client.ts` - Better Auth client configuration
 
 ### Database Schema
 - `prisma/schema.prisma` - User, Account, and Session models

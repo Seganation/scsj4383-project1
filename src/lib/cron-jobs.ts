@@ -5,8 +5,8 @@
  * Designed to be lightweight and VPS-friendly.
  */
 
-import prisma from "@/app/lib/db";
-import { emailService, emailTransporter } from "@/app/lib/email";
+import prisma from "@/lib/db";
+import { emailService, emailTransporter } from "@/lib/email";
 
 // ============================================================================
 // JOB 1: Clean Expired Sessions (Better Auth)

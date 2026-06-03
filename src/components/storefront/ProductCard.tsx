@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AddToCartButton } from "./AddToCartButton";
-import { useClientCart } from "@/app/hooks/use-client-cart";
+import { useClientCart } from "@/hooks/use-client-cart";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";

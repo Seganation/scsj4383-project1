@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { timingSafeEqual } from "node:crypto";
-import { runScheduledJobs } from "@/app/lib/cron-jobs";
+import { runScheduledJobs } from "@/lib/cron-jobs";
 
 function safeCompare(a: string, b: string): boolean {
   const aBuf = Buffer.from(a);

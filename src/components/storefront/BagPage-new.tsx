@@ -1,6 +1,6 @@
 "use client";
 
-import { useClientCart, useClientCheckout } from "@/app/hooks/use-client-cart";
+import { useClientCart, useClientCheckout } from "@/hooks/use-client-cart";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, Trash2 } from "lucide-react";
 import Image from "next/image";

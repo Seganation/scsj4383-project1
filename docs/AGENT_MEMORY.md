@@ -11,7 +11,7 @@
 
 ### Key File Locations
 - **Server Auth Config**: `src/lib/auth.ts`
-- **Client Auth Config**: `src/app/lib/auth-client.ts`
+- **Client Auth Config**: `src/lib/auth-client.ts`
 - **API Route**: `src/app/api/auth/[...betterAuth]/route.ts`
 - **Auth Pages**: `src/app/(auth)/`
 - **Public Pages**: `src/app/(public)/`
@@ -104,7 +104,7 @@ export const auth = betterAuth({
 });
 ```
 
-### Client Auth (`src/app/lib/auth-client.ts`)
+### Client Auth (`src/lib/auth-client.ts`)
 ```typescript
 export const authClient = createAuthClient({
   plugins: [

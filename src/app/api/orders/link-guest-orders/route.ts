@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import {
   linkGuestOrdersToUser,
   checkForGuestOrders,
-} from "@/app/lib/order-linking";
+} from "@/lib/order-linking";
 
 export async function POST(req: NextRequest) {
   try {

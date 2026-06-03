@@ -20,7 +20,7 @@ Instead of KV store, we use PostgreSQL with JSON fields for caching, making it V
 
 ### 1. Unified Sync Function (`syncStripeDataToDB`)
 
-**Location**: `src/app/lib/stripe.ts`
+**Location**: `src/lib/stripe.ts`
 
 ```typescript
 export async function syncStripeDataToDB(customerId: string): Promise<STRIPE_CUSTOMER_CACHE>
@@ -57,7 +57,7 @@ type STRIPE_CUSTOMER_CACHE = {
 
 ### 2. Intelligent Caching System
 
-**Location**: `src/app/lib/stripe.ts`
+**Location**: `src/lib/stripe.ts`
 
 ```typescript
 export async function getStripeCustomerData(customerId: string): Promise<STRIPE_CUSTOMER_CACHE | null>

@@ -1,7 +1,7 @@
 export const runtime = "nodejs";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { linkGuestOrdersToUser } from "@/app/lib/order-linking";
+import { linkGuestOrdersToUser } from "@/lib/order-linking";
 
 export async function POST(req: NextRequest) {
   try {

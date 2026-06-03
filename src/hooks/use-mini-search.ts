@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { productApi } from "@/app/lib/api";
+import { productApi } from "@/lib/api";
 import {
   getSearchService,
   ProductSearchItem,

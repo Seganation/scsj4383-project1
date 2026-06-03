@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { OTPForm } from "@/components/auth/OTPForm";
 import { MagicLinkAuth } from "@/components/auth/MagicLinkAuth";
-import { emailOtp } from "@/app/lib/auth-client";
+import { emailOtp } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import { ArrowUpRight, Loader2 } from "lucide-react";
 

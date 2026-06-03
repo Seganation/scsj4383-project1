@@ -11,7 +11,7 @@ import {
   useProductSearch,
   useSearchSuggestions,
   useSearchService,
-} from "@/app/hooks/use-mini-search";
+} from "@/hooks/use-mini-search";
 import { SearchResult } from "@/lib/mini-search";
 
 interface SearchInputProps {

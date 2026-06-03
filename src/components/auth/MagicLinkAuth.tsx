@@ -11,7 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { magicLink, signIn } from "@/app/lib/auth-client";
+import { magicLink, signIn } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import { CheckCircle, Mail } from "lucide-react";
 

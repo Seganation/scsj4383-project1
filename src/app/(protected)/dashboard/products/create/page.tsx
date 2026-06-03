@@ -24,15 +24,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { ChevronLeft, XIcon, Loader2 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { uploadFiles, isImageFile } from "@/utils/ut-client";
+import { uploadFiles, isImageFile } from "@/lib/ut-client";
 import { useForm } from "@conform-to/react";
 import { parseWithZod } from "@conform-to/zod/v4";
-import { productSchema } from "@/app/lib/zodSchemas";
+import { productSchema } from "@/lib/zodSchemas";
 import { useState, useTransition } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { Image } from "@/components";
-import { categories } from "@/app/lib/categories";
+import { categories } from "@/lib/categories";
 import {
   DndContext,
   closestCenter,

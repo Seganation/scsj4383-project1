@@ -42,15 +42,15 @@ pnpm test-email-2           # Test second email template
 
 **Key Directories:**
 - `src/app/api/` - Next.js API routes for REST endpoints
-- `src/app/hooks/` - Custom React hooks for data fetching and state management
-- `src/app/lib/` - Core utilities, auth config, database client, email service
+- `src/hooks/` - Custom React hooks for data fetching and state management
+- `src/lib/` - Core utilities, auth config, database client, email service
 - `src/components/` - Reusable components (auth, storefront, dashboard, ui)
 - `prisma/` - Database schema and migrations
 
 ### Authentication System (Better Auth)
 
 **Critical Rule: Plugin Parity**
-- Server plugins in `src/lib/auth.ts` MUST exactly match client plugins in `src/app/lib/auth-client.ts`
+- Server plugins in `src/lib/auth.ts` MUST exactly match client plugins in `src/lib/auth-client.ts`
 - Current plugins: `admin`, `multiSession`, `emailOTP`, `magicLink`
 - NEVER add manual session management with `useEffect` hooks
 - Let Better Auth handle redirects with `callbackURL` parameter
@@ -58,12 +58,12 @@ pnpm test-email-2           # Test second email template
 
 **Auth Flow:**
 1. Server config: `src/lib/auth.ts` (betterAuth with Prisma adapter)
-2. Client config: `src/app/lib/auth-client.ts` (createAuthClient)
+2. Client config: `src/lib/auth-client.ts` (createAuthClient)
 3. API route: `src/app/api/auth/[...betterAuth]/route.ts`
-4. Usage: Import from `@/app/lib/auth-client` (NOT from `@/lib/auth`)
+4. Usage: Import from `@/lib/auth-client` (NOT from `@/lib/auth`)
 
 **Session Management:**
-- Use `const { data: session } = useSession()` from `@/app/lib/auth-client`
+- Use `const { data: session } = useSession()` from `@/lib/auth-client`
 - Admin check: `session?.user?.role === "admin"`
 - Multi-session support enabled (max 5 concurrent sessions)
 - Cookie cache: 24 hours in production, 5 minutes recommended for development
@@ -115,8 +115,8 @@ pnpm test-email-2           # Test second email template
 **Replaced Redis** - TanStack Query now handles all client-side caching and state management
 
 **Cart Management:**
-- Client-side localStorage via `CartStorage` class (`src/app/lib/cart-client.ts`)
-- Hook: `useClientCart()` from `src/app/hooks/use-client-cart.ts`
+- Client-side localStorage via `CartStorage` class (`src/lib/cart-client.ts`)
+- Hook: `useClientCart()` from `src/hooks/use-client-cart.ts`
 - Auto-migrates cart when user logs in/out
 - Cart cleared after successful checkout
 - Admins prevented from making purchases
@@ -138,7 +138,7 @@ pnpm test-email-2           # Test second email template
 
 ### Email Service (Nodemailer)
 
-**Configuration:** `src/app/lib/email.ts`
+**Configuration:** `src/lib/email.ts`
 - SMTP: mail.privateemail.com:587
 - From: archcool@archcoolstore.com
 
@@ -203,7 +203,7 @@ pnpm test-email-2           # Test second email template
 
 ### Styling
 - Tailwind CSS with custom configuration
-- Utility function `cn()` from `src/utils/cn.ts` (tailwind-merge + clsx)
+- Utility function `cn()` from `src/lib/cn.ts` (tailwind-merge + clsx)
 - Responsive design with mobile-first approach
 
 ## Environment Variables
@@ -272,12 +272,12 @@ Required environment variables (see `.env.example`):
 4. Update product display in `src/components/storefront/`
 
 ### Adding a New Email Template
-1. Add template to `emailTemplates` in `src/app/lib/email.ts`
+1. Add template to `emailTemplates` in `src/lib/email.ts`
 2. Add service function to `emailService` export
 3. Call from appropriate API route or webhook
 
 ### Debugging Better Auth Issues
-1. Check plugin parity: `src/lib/auth.ts` vs `src/app/lib/auth-client.ts`
+1. Check plugin parity: `src/lib/auth.ts` vs `src/lib/auth-client.ts`
 2. Look for console errors about missing endpoints (404s = plugin mismatch)
 3. Test endpoint: `curl http://localhost:3000/api/auth/get-session`
 4. Check network tab for failed auth requests
@@ -287,5 +287,5 @@ Required environment variables (see `.env.example`):
 1. Add API route under `src/app/api/admin/`
 2. Add UI page under `src/app/(protected)/dashboard/`
 3. Check admin role: `session?.user?.role === "admin"`
-4. Add TanStack Query hooks in `src/app/hooks/use-admin.ts`
+4. Add TanStack Query hooks in `src/hooks/use-admin.ts`
 5. Invalidate relevant query keys after mutations

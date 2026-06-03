@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { CartStorage } from "@/app/lib/cart-client";
-import { Cart, CartItem } from "@/app/lib/interfaces";
-import { useSession } from "@/app/lib/auth-client";
+import { CartStorage } from "@/lib/cart-client";
+import { Cart, CartItem } from "@/lib/interfaces";
+import { useSession } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 // Custom hook for cart state management

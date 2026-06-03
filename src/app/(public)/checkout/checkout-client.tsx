@@ -1,7 +1,7 @@
 "use client";
 
-import { useClientCart } from "@/app/hooks/use-client-cart";
-import { useSession } from "@/app/lib/auth-client";
+import { useClientCart } from "@/hooks/use-client-cart";
+import { useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";

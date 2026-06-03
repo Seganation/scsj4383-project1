@@ -104,23 +104,23 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..."
 
 ### New Files
 
-- `/auth.ts` - Better Auth server configuration
-- `/app/lib/auth-client.ts` - Better Auth client configuration
-- `/app/api/auth/[...betterAuth]/route.ts` - Auth API handler
-- `/app/auth/sign-in/page.tsx` - Sign in page
-- `/app/auth/sign-up/page.tsx` - Sign up page
-- `/app/hooks/use-session.ts` - Session management hooks
-- `/app/components/dashboard/SignOutButton.tsx` - Sign out component
-- `/middleware.ts` - Route protection middleware
-- `/app/api/stripe/webhook/route.ts` - Stripe webhook handler
+- `src/lib/auth.ts` - Better Auth server configuration
+- `src/lib/auth-client.ts` - Better Auth client configuration
+- `src/app/api/auth/[...betterAuth]/route.ts` - Auth API handler
+- `src/app/(auth)/sign-in/page.tsx` - Sign in page
+- `src/app/(auth)/sign-up/page.tsx` - Sign up page
+- `src/hooks/use-session.ts` - Session management hooks
+- `src/components/dashboard/SignOutButton.tsx` - Sign out component
+- `src/middleware.ts` - Route protection middleware
+- `src/app/api/stripe/webhook/route.ts` - Stripe webhook handler
 
 ### Updated Files
 
-- `/prisma/schema.prisma` - Better Auth compatible schema
-- `/app/components/storefront/Navbar.tsx` - Better Auth integration
-- `/app/components/storefront/UserDropdown.tsx` - Client-side auth
-- `/app/dashboard/layout.tsx` - Admin protection
-- `/app/api/checkout/route.ts` - Better Auth and order integration
+- `prisma/schema.prisma` - Better Auth compatible schema
+- `src/components/storefront/Navbar.tsx` - Better Auth integration
+- `src/components/storefront/UserDropdown.tsx` - Client-side auth
+- `src/app/dashboard/layout.tsx` - Admin protection
+- `src/app/api/checkout/route.ts` - Better Auth and order integration
 
 ### Removed Dependencies
 

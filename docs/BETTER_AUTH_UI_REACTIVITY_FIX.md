@@ -229,7 +229,7 @@ export const auth = betterAuth({
 });
 ```
 
-### Client Configuration (`src/app/lib/auth-client.ts`)
+### Client Configuration (`src/lib/auth-client.ts`)
 ```typescript
 import { createAuthClient } from "better-auth/react";
 import { adminClient } from "better-auth/client/plugins";

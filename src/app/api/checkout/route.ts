@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { stripe, syncStripeDataToDB } from "@/app/lib/stripe";
-import prisma from "@/app/lib/db";
-import { generateNextOrderReferenceId } from "@/app/lib/db";
-import { rateLimit, RATE_LIMITS } from "@/app/lib/rate-limit";
+import { stripe, syncStripeDataToDB } from "@/lib/stripe";
+import prisma from "@/lib/db";
+import { generateNextOrderReferenceId } from "@/lib/db";
+import { rateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 // Helper function to validate URL
 function isValidUrl(string: string): boolean {

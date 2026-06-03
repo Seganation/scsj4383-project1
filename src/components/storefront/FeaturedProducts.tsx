@@ -1,4 +1,4 @@
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import { unstable_cache } from "next/cache";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";

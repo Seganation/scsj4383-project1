@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import prisma from "@/app/lib/db";
-import { Cart } from "@/app/lib/interfaces";
-import { getCartFromStorage, setCartInStorage } from "@/app/lib/cart-storage";
+import prisma from "@/lib/db";
+import { Cart } from "@/lib/interfaces";
+import { getCartFromStorage, setCartInStorage } from "@/lib/cart-storage";
 import { headers } from "next/headers";
 
 export async function POST(

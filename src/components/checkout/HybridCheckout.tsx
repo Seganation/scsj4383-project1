@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
-import { useSession } from "@/app/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import {
   ShoppingBag,

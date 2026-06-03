@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useInfiniteProducts } from "@/app/hooks/use-products";
+import { useInfiniteProducts } from "@/hooks/use-products";
 import { ProductTile } from "@/components/storefront/ProductTile";
 import { Button } from "@/components/ui/button";
 import { Package } from "lucide-react";

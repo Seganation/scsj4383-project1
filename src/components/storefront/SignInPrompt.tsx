@@ -1,6 +1,6 @@
 "use client";
 
-import { useClientCart } from "@/app/hooks/use-client-cart";
+import { useClientCart } from "@/hooks/use-client-cart";
 import { ShoppingBag, User, Lock, Check, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";

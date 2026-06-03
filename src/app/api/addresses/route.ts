@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/lib/auth";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 
 const addressSchema = z.object({
   label: z.string().trim().min(1).max(50),

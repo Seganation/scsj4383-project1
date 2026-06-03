@@ -4,7 +4,7 @@ import { QuickActions } from "@/components/dashboard/QuickActions";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown, Users, ShoppingCart, DollarSign, Package } from "lucide-react";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import { formatCurrency } from "@/lib/utils";
 import React from "react";
 

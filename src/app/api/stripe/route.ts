@@ -1,6 +1,6 @@
-import prisma from "@/app/lib/db";
-import { stripe, syncStripeDataToDB } from "@/app/lib/stripe";
-import { emailService } from "@/app/lib/email";
+import prisma from "@/lib/db";
+import { stripe, syncStripeDataToDB } from "@/lib/stripe";
+import { emailService } from "@/lib/email";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";

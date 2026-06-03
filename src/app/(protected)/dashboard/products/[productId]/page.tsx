@@ -1,5 +1,5 @@
 import { EditForm } from "@/components/dashboard/EditForm";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
 import { unstable_noStore as noStore } from "next/cache";
 

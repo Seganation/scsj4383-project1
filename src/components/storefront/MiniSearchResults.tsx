@@ -9,7 +9,7 @@ import {
   useProductSearch,
   useSemanticSearch,
   useSearchStats,
-} from "@/app/hooks/use-mini-search";
+} from "@/hooks/use-mini-search";
 
 interface MiniSearchResultsProps {
   initialQuery?: string;

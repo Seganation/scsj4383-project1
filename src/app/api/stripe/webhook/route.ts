@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/app/lib/stripe";
+import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import type Stripe from "stripe";
-import { rateLimit, RATE_LIMITS } from "@/app/lib/rate-limit";
+import { rateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -186,7 +186,7 @@ export async function POST(req: NextRequest) {
                 process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
               const magicLink = `${baseUrl}/my-orders/${order.referenceId}?verify=${magicLinkToken}`;
 
-              const { emailService } = await import("@/app/lib/email");
+              const { emailService } = await import("@/lib/email");
               // Send order confirmation email with magic link
               await emailService.sendOrderConfirmation(order.shippingEmail, {
                 referenceId: order.referenceId,

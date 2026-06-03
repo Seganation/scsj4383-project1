@@ -2,7 +2,7 @@
 
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { magicLink } from "@/app/lib/auth-client";
+import { magicLink } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import { CheckCircle, XCircle, Loader2, ArrowUpRight } from "lucide-react";
 

@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 import { isBuildTime } from "@/lib/build-time";
 
 // Prevent static generation during build

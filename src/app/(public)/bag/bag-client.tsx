@@ -1,7 +1,7 @@
 "use client";
 
 import { BagPage } from "@/components/storefront/BagPage";
-import { useSession } from "@/app/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 
 export function BagClient() {
   // Use client session if available, but allow guests

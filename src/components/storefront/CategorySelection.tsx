@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import prisma from "@/app/lib/db";
+import prisma from "@/lib/db";
 
 export async function CategoriesSelection() {
   // Fetch all categories from the database

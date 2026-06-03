@@ -1,4 +1,4 @@
-import { Cart } from "@/app/lib/interfaces";
+import { Cart } from "@/lib/interfaces";
 
 // Temporary in-memory storage - in production, use proper database tables
 const cartStorage = new Map<string, Cart>();

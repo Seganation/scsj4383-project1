@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "@/app/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";

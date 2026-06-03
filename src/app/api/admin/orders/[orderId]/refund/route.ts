@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "@/app/lib/db";
-import { stripe } from "@/app/lib/stripe";
-import { emailService } from "@/app/lib/email";
+import prisma from "@/lib/db";
+import { stripe } from "@/lib/stripe";
+import { emailService } from "@/lib/email";
 import { auth } from "@/lib/auth";
-import { rateLimit, RATE_LIMITS } from "@/app/lib/rate-limit";
+import { rateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ orderId: string }> }) {
   const { orderId } = await params;

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import prisma from "@/app/lib/db";
-import { stripe } from "@/app/lib/stripe";
+import prisma from "@/lib/db";
+import { stripe } from "@/lib/stripe";
 
 export async function POST(request: NextRequest, { params }: { params: Promise<{ orderId: string }> }) {
   const { orderId } = await params;

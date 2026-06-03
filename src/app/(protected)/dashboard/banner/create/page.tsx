@@ -1,7 +1,7 @@
 "use client";
 
 import { createBanner } from "@/app/actions";
-import { bannerSchema } from "@/app/lib/zodSchemas";
+import { bannerSchema } from "@/lib/zodSchemas";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,7 +22,7 @@ import { useState, useTransition } from "react";
 import React from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { uploadFiles, isImageFile } from "@/utils/ut-client";
+import { uploadFiles, isImageFile } from "@/lib/ut-client";
 
 export default function BannerRoute() {
   const [imageFile, setImageFile] = useState<File | null>(null);

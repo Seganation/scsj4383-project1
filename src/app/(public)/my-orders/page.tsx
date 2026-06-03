@@ -1,6 +1,6 @@
 "use client";
 
-import { useSession } from "@/app/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 import { MyOrdersPage } from "@/components/storefront/MyOrdersPage";
 import { SignInPrompt } from "@/components/storefront/SignInPrompt";
 import { useEffect } from "react";

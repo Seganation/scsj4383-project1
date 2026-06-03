@@ -1,5 +1,5 @@
 {
-  "name": "archcool",
+  "name": "scsj4383-project1",
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@9.0.0",
@@ -15,7 +15,12 @@
     "postinstall": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts",
+    "db:check": "node scripts/debug-db.js",
+    "admin:create": "tsx scripts/create-admin.ts",
+    "admin:make": "tsx scripts/make-admin.ts",
+    "admin:setup": "tsx scripts/setup-admin.ts",
     "generate:icons": "node scripts/generate-icons.js",
+    "optimize:images": "node scripts/optimize-images.js",
     "test-email": "tsx scripts/test-first-email-template.ts",
     "test-email-2": "tsx scripts/test-second-email-template.ts"
   },
