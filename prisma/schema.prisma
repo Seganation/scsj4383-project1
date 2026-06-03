@@ -1,0 +1,234 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//
+// CORE AUTH: Better Auth (with multi-session + jwt)
+//
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  emailVerified     Boolean  @default(false)
+  name              String?
+  firstName         String?
+  lastName          String?
+  image             String? // renamed from profileImage
+  phone             String?
+  role              String   @default("user")
+  banned            Boolean  @default(false)
+  banReason         String?
+  banExpires        DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  stripeCustomerId  String?  // Stripe customer ID for persistent linking
+  stripeDataCache   Json?    // Cached Stripe customer/subscription data
+  lastStripeSync    DateTime? // When Stripe data was last synced
+  sessions          Session[]
+  accounts          Account[]
+  orders            Order[]
+  addresses         Address[]  // User's address book
+}
+
+model Session {
+  id             String   @id @default(cuid())
+  userId         String
+  token          String   @unique
+  expiresAt      DateTime
+  ipAddress      String?
+  userAgent      String?
+  impersonatedBy String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Account {
+  id                    String   @id @default(cuid())
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  idToken               String?
+  password              String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  user                  User     @relation(fields: [userId], references: [id])
+
+  @@unique([providerId, accountId])
+}
+
+//
+// PRODUCTS + ORDERING
+//
+
+model Address {
+  id          String   @id @default(uuid())
+  userId      String
+  label       String   // "Home", "Work", "Mom's House", etc.
+  fullName    String
+  phone       String?
+  addressLine1 String
+  addressLine2 String?
+  city        String
+  state       String?
+  postalCode  String
+  country     String
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders      Order[]  // Orders that used this address
+
+  @@index([userId])
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  slug      String  @unique
+  imageUrl  String
+  products  Product[]
+}
+
+model Product {
+  id          String      @id @default(uuid())
+  name        String      @unique // Product names are unique and used in URLs
+  description String
+  price       Int         // stored in pounds
+  images      String[]    // array of image URLs
+  categoryId  String
+  category    Category   @relation(fields: [categoryId], references: [id])
+  status      ProductStatus
+  isFeatured  Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  status          OrderStatus @default(pending)
+  amount          Int         // total amount in pounds
+  userId          String?     // Optional: null for guest orders
+  addressId       String?     // Optional: null for guest orders (use shipping snapshot instead)
+  stripeSessionId String?     // To link with Stripe session
+
+  // Payment tracking
+  stripePaymentIntentId String? // Stripe payment intent ID
+  stripeFee             Int?     // Stripe processing fee in pounds
+  paymentStatus         PaymentStatus @default(pending)
+  paidAt                DateTime?     // When payment was confirmed
+
+  // Invoice information
+  invoiceNumber   String?     // Generated invoice number
+  invoiceUrl      String?     // URL to downloadable invoice
+
+  // Shipping information snapshot (for order history integrity)
+  shippingName    String      // Snapshot: recipient name at time of order
+  shippingEmail   String      // Snapshot: contact email at time of order
+  shippingPhone   String?     // Snapshot: phone number at time of order
+  shippingAddress String      // Snapshot: full address at time of order
+  shippingCity    String      // Snapshot: city at time of order
+  shippingState   String?     // Snapshot: state/province at time of order
+  shippingPostalCode String   // Snapshot: postal/zip code at time of order
+  shippingCountry String      // Snapshot: country at time of order
+
+  // Order linking for guest-to-user conversion
+  linkedAt        DateTime?   // When this order was linked to a user account
+
+  // Magic link for order tracking
+  magicLinkToken     String?   // Secure token for magic link order tracking
+  magicLinkExpiresAt DateTime? // Expiry for magic link
+
+  referenceId String  @unique
+  disputeId          String?
+  disputeReason      String?
+  disputeStatus      String?
+  taxAmount          Int?
+  taxRate            Float?
+  shippingAmount     Int?
+  shippingMethod     String?
+
+  refundReason       String?   // Reason for refund
+  stripeRefundId     String?   // Stripe refund ID
+
+  user            User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+  address         Address?    @relation(fields: [addressId], references: [id], onDelete: SetNull)
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+
+  @@index([userId])
+  @@index([addressId])
+  @@index([shippingEmail])  // For finding orders by email (both guest and user)
+  @@index([stripeSessionId])
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  productId String
+  quantity  Int      // e.g. 2 chairs
+  price     Int      // snapshot of product price at time of order in pounds (not redundant — immutable)
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@unique([orderId, productId]) // 1 product per order only once
+}
+
+model Banner {
+  id          String   @id @default(uuid())
+  title       String
+  imageString String
+  createdAt   DateTime @default(now())
+}
+
+//
+// ENUMS
+//
+
+enum ProductStatus {
+  draft
+  published
+  archived
+}
+
+enum OrderStatus {
+  pending
+  paid
+  cancelled
+  fulfilled
+  refunded
+}
+
+enum PaymentStatus {
+  pending
+  processing
+  succeeded
+  failed
+  cancelled
+  refunded
+  disputed
+}
+

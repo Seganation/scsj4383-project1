@@ -1,0 +1,68 @@
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Next.js
+.next
+out
+
+# Git
+.git
+.gitignore
+
+# CI/CD
+.github
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Development files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Environment files (will be injected at runtime)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env*.local
+.env.example
+.env.example.cdn
+
+# Testing
+coverage
+.nyc_output
+__tests__
+
+# Misc
+.DS_Store
+*.pem
+*.log
+
+# Documentation
+*.md
+docs/
+notes.txt
+tododod.txt
+
+# Temp files
+temp
+tmp
+
+# Scripts (not needed in production)
+scripts/
+
+# Prisma (migrations will run separately)
+prisma/migrations/
+
+# Build artifacts from other projects
+dist
+build

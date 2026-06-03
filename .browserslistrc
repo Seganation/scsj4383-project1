@@ -1,0 +1,16 @@
+# Browsers that we support for ArchCool Store
+# Target modern browsers to reduce polyfills and bundle size
+
+# Production browsers
+> 0.5%
+last 2 versions
+not dead
+not IE 11
+not op_mini all
+
+# Modern browsers with ES2020+ support
+chrome >= 87
+edge >= 88
+firefox >= 78
+safari >= 14
+ios_saf >= 14

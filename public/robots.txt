@@ -1,0 +1,29 @@
+# ArchCool Store - Robots.txt
+# https://archcoolstore.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /dashboard
+Disallow: /api/
+Disallow: /admin/
+
+# Allow specific API endpoints for crawlers
+Allow: /api/products
+Allow: /api/og
+
+# Sitemaps
+Sitemap: https://archcoolstore.com/sitemap.xml
+
+# Crawl-delay for polite bots (optional)
+Crawl-delay: 1
+
+# Allow common search engines
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Slurp
+User-agent: DuckDuckBot
+User-agent: Baiduspider
+User-agent: YandexBot
+Allow: /
