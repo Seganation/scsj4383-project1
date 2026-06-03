@@ -1,13 +1,35 @@
 # Archcool E-Commerce Platform
 
-🌟 Modern e-commerce platform built with the latest technologies: Next.js, Kinde-Auth, Neon Database, TanStack Query, Prisma, Stripe, and Tailwind CSS.
+🌟 **Archcool** is a high-performance, modern e-commerce platform built with the latest web technologies. It features a sleek storefront, a robust admin dashboard, and seamless integration with Stripe for payments and Better Auth for secure authentication.
 
-## 🚀 Quick Start
+## 🚀 Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router, `src` directory)
+- **Authentication:** [Better Auth](https://better-auth.com/) (Email/Password, Google OAuth, Magic Link, OTP)
+- **Database:** [PostgreSQL](https://www.postgresql.org/) with [Prisma ORM](https://www.prisma.io/)
+- **Payments:** [Stripe](https://stripe.com/) (Checkout & Webhooks)
+- **File Uploads:** [UploadThing](https://uploadthing.com/)
+- **State Management:** [TanStack Query](https://tanstack.com/query)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) & [Shadcn UI](https://ui.shadcn.com/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)
+- **Search:** [MiniSearch](https://lucaong.github.io/minisearch/) (Client-side)
+
+## 📦 Features
+
+- 🛒 **Full Storefront:** Category browsing, product search, and responsive design.
+- 🔐 **Secure Auth:** Multi-strategy authentication via Better Auth.
+- 💳 **Seamless Payments:** Integrated Stripe Checkout with webhook synchronization.
+- 🛠️ **Admin Dashboard:** Manage products, orders, categories, and banners.
+- 📈 **Analytics:** Visualized sales data and performance metrics.
+- 📧 **Email System:** Automated transactional emails for orders and auth.
+- ⚡ **Performance:** Optimized images, server-side rendering, and efficient data fetching.
+
+## 🛠️ Quick Start
 
 ### Prerequisites
 
-- Node.js 18+
-- PNPM 8+ (recommended package manager)
+- Node.js 20+
+- PNPM 9+
 
 ### Installation
 
@@ -16,139 +38,52 @@
 git clone <repository-url>
 cd archcool
 
-# Install dependencies using pnpm
+# Install dependencies
 pnpm install
 
-# Set up environment variables
-cp .env.example .env.local
-# Fill in your environment variables
+# Environment Setup
+cp .env.example .env
+# Configure your variables (DATABASE_URL, STRIPE_SECRET_KEY, BETTER_AUTH_SECRET, etc.)
 
-# Set up the database
-pnpm prisma generate
-pnpm prisma db push
+# Database Setup
+pnpm db:migrate
+pnpm db:seed
 
-# Start development server
+# Run Development Server
 pnpm dev
 ```
 
-### 🚀 Kinde Auth: https://dub.sh/xeU8r3v
+## 📜 Available Scripts
 
-## � Features
+- `pnpm dev`: Start development server.
+- `pnpm build`: Build for production.
+- `pnpm start`: Start production server.
+- `pnpm lint`: Run ESLint check.
+- `pnpm db:migrate`: Deploy Prisma migrations.
+- `pnpm db:seed`: Seed the database with initial data.
+- `pnpm admin:setup`: Set up initial admin accounts.
+- `pnpm optimize:images`: Run image optimization scripts.
+- `pnpm generate:icons`: Generate PWA and site icons.
 
-- 🌐 Next.js App Router with TypeScript
-- 🔐 Kinde Authentication with MFA
-- 📧 Passwordless Authentication
-- 🔑 OAuth (Google and GitHub)
-- 💰 Payments using Stripe
-- 🪝 Stripe Webhooks Implementation
-- 💿 Neon PostgreSQL Database
-- 💨 Prisma ORM
-- ⚡ TanStack Query for State Management (replaced Redis)
-- 🛒 Real-time Cart Management
-- 📈 Recharts for Analytics Dashboard
-- ✅ Server Validation using Zod and Conform
-- 🗂️ File Upload with Uploadthing
-- 🎨 Styling with Tailwind CSS and Shadcn UI
-- 🔥 React Hot Toast for Notifications
-- 😶‍🌫️ Deployment Ready for Vercel
+## 🏗️ Project Structure (Waterfall)
 
-## 📝 Available Scripts
+- **`src/app/(auth)`**: Authentication routes and pages.
+- **`src/app/(protected)/dashboard`**: Admin-only management dashboard.
+- **`src/app/(public)`**: Customer-facing storefront pages.
+- **`src/app/api`**: Unified API routes (Auth, Stripe, UploadThing).
+- **`src/lib`**: Shared utilities (DB client, Auth config, Stripe, Email).
+- **`src/hooks`**: Custom React hooks for data fetching and UI state.
+- **`src/components`**: Reusable UI, Storefront, Dashboard, and Auth components.
+- **`docs/`**: Project documentation and guides.
+- **`scripts/`**: Maintenance and utility scripts.
+- **`prisma/`**: Database schema and migration files.
 
-```bash
-# Development
-pnpm dev          # Start development server
-pnpm dev:debug    # Start with debugging enabled
+## 👟 Featured Products
 
-# Building
-pnpm build        # Build for production
-pnpm start        # Start production server
+- **ULTRABOOST 1.0 ATR**: High-performance sneaker with metal buckles and BOOST cushioning.
+- **VaporMax 2023 Flyknit**: Innovative "walking on air" feel with recycled Flyknit upper.
+- **Nike Air Max Plus**: Classic '90s style with Tuned Air cushioning and breathable mesh.
+- **ULTRABOOST DNA 5.0**: Versatile everyday sneaker with PRIMEKNIT upper for all-day comfort.
 
-# Code Quality
-pnpm lint         # Run ESLint
-pnpm lint:fix     # Fix ESLint issues
-pnpm type-check   # Run TypeScript type checking
-
-# Database
-pnpm db:generate  # Generate Prisma client
-pnpm db:push      # Push schema to database
-pnpm db:migrate   # Run database migrations
-pnpm db:studio    # Open Prisma Studio
-
-# Package Management
-pnpm add <package>        # Add dependency
-pnpm add -D <package>     # Add dev dependency
-pnpm remove <package>     # Remove dependency
-pnpm update              # Update all dependencies
-pnpm audit               # Security audit
-```
-
-## 🏗️ Architecture
-
-- **Frontend**: Next.js 14 with App Router
-- **Backend**: Next.js API Routes
-- **Database**: Neon PostgreSQL with Prisma ORM
-- **Authentication**: Kinde Auth
-- **State Management**: TanStack Query
-- **Styling**: Tailwind CSS + Shadcn UI
-- **Payments**: Stripe
-- **File Storage**: Uploadthing
-- **Deployment**: Vercel
-
-## 📚 Documentation
-
-- [TanStack Query Implementation](./docs/tanstack-query-implementation.md)
-- [PNPM Migration Guide](./docs/pnpm-migration.md)
-- [Issues and Improvements](./docs/issues_and_improvements.md)
-- [Project Documentation](./docs/project_docs.md)
-
-## 🔧 Technologies
-
-- **Next.js**: https://nextjs.org
-- **Kinde**: https://dub.sh/xeU8r3v
-- **Tailwind CSS**: https://tailwindcss.com
-- **Shadcn/UI**: https://ui.shadcn.com
-- **Stripe**: https://stripe.com
-- **Prisma**: https://prisma.io
-- **Neon**: https://neon.tech/
-- **TanStack Query**: https://tanstack.com/query
-- **React Hot Toast**: https://react-hot-toast.com
-- **Recharts**: https://recharts.org/
-
-## Products
-
-### Product one
-
-- Title: ULTRABOOST 1.0 ATR
-- Price: 240
-- Description An everyday sneaker with high-quality performance features. This Ultraboost shoe comes with metal buckles instead of laces, perfectly complementing its sleek, modern design. The adidas PRIMEKNIT upper wraps your foot snugly, and the energy-returning BOOST cushioning provides a comfortable feel and optimal support.
-- Images in Public Folder
-
-### Product Two
-
-- Title: VaporMax 2023 Flyknit
-- Price: $220
-- Description: Have you ever walked on air? Check out the Air VaporMax 2023 to see how it feels. The perforated insole reveals the innovative technology (remove it to see more). The stretchy Flyknit upper is made from at least 20% recycled material by weight.
-- Images in Public Folder
-
-### Product Three
-
-- Title: Nike Air Max Plus
-- Price: 210
-- Description: This tuned Nike Air design stands out with top-notch stability, unparalleled cushioning, and adds that special something to your style. Featuring classic '90s style, breathable mesh, and nature-inspired design lines, you can celebrate your bold style with great comfort.
-- Images in public folder
-
-### Product Four
-
-- Title: ULTRABOOST DNA 5.0
-- Price: 180
-- Description: So much more than just a running shoe – with this adidas Ultraboost, you are perfectly equipped for everyday life. This version for kids and teens comes with all the functional features that runners swear by. Additionally, it provides pure comfort. You can thank the soft adidas PRIMEKNIT upper and the energy-returning BOOST midsole for that.
-- Images in public folder
-
-
-
-
-
-todo:
-
-
-so can we also do another implementation for the headers icon of the users loged in circle icon displaying an image or whatever the ddropdown menu in the header for logged in users what 
+---
+Built with ❤️ by the Archcool Team.

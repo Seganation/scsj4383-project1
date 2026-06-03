@@ -1,76 +1,82 @@
+# Archcool: Technical Project Documentation
 
-# Archcool E-commerce Platform: Project Documentation
-
-This document provides a comprehensive overview of the Archcool e-commerce platform, detailing its architecture, features, and technical implementation.
+This document provides a comprehensive technical overview of the Archcool e-commerce platform, detailing its architecture, core technologies, and implementation patterns.
 
 ## 1. Project Overview
 
-Archcool is a modern, full-stack e-commerce application built with Next.js, TypeScript, and other leading web technologies. It provides a complete online shopping experience, from browsing products to secure checkout. The platform also includes a dedicated dashboard for administrators to manage products, orders, and other store-related data.
+Archcool is a modern, full-stack e-commerce application built with Next.js 15. It is designed for high performance, scalability, and security. The platform provides a seamless shopping experience for users and a powerful management interface for administrators.
 
-### 1.1. Core Technologies
+### 1.1. Core Technology Stack
 
-- **Framework:** [Next.js](https://nextjs.org/) (React framework for server-side rendering and static site generation)
-- **Language:** [TypeScript](https://www.typescriptlang.org/) (Statically typed superset of JavaScript)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) (Utility-first CSS framework)
-- **UI Components:** [Shadcn UI](https://ui.shadcn.com/) (Accessible and customizable UI components)
-- **Database:** [PostgreSQL](https://www.postgresql.org/) (via [Prisma ORM](https://www.prisma.io/))
-- **Authentication:** [Kinde](https://kinde.com/) (for secure user authentication)
-- **Payment Processing:** [Stripe](https://stripe.com/) (for handling online payments)
-- **File Uploads:** [UploadThing](https://uploadthing.com/) (for managing product image uploads)
-- **In-memory Data Store:** [Redis](https://redis.io/) (for caching and session management)
+- **Framework:** [Next.js](https://nextjs.org/) (App Router, React 19)
+- **Authentication:** [Better Auth](https://better-auth.com/)
+- **Database:** [PostgreSQL](https://www.postgresql.org/) with [Prisma ORM](https://www.prisma.io/)
+- **Payments:** [Stripe](https://stripe.com/)
+- **File Uploads:** [UploadThing](https://uploadthing.com/)
+- **State Management:** [TanStack Query v5](https://tanstack.com/query)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) & [Shadcn UI](https://ui.shadcn.com/)
+- **Search:** [MiniSearch](https://lucaong.github.io/minisearch/)
 
-### 1.2. Key Features
+## 2. Project Architecture
 
-- **Storefront:**
-  - Product browsing and filtering by category
-  - Detailed product pages with image sliders
-  - Shopping cart functionality
-  - Secure checkout with Stripe
-  - User authentication and profile management
-- **Dashboard (Admin):**
-  - Product creation, editing, and deletion
-  - Order management and tracking
-  - Sales analytics and reporting
-  - Banner management for promotional content
+The project follows a "Waterfall" structure within the `src` directory to maintain a clean separation of concerns.
 
-## 2. Project Structure
+### 2.1. Directory Structure
 
-The project is organized into several key directories:
+- **`src/app/(auth)`**: Handles authentication flows (Login, Register, Forgot Password, Magic Link).
+- **`src/app/(protected)/dashboard`**: Protected admin routes for store management.
+- **`src/app/(public)`**: Public-facing storefront (Home, Product Details, Category pages, Cart).
+- **`src/app/api`**: Server-side API endpoints for Better Auth, Stripe Webhooks, and UploadThing handlers.
+- **`src/lib`**: Unified library directory containing:
+  - `db.ts`: Prisma client initialization.
+  - `auth.ts`: Better Auth server configuration.
+  - `stripe.ts`: Stripe client and helper functions.
+  - `email.ts`: Nodemailer configuration and transactional email templates.
+  - `query-client.ts`: TanStack Query client setup.
+- **`src/hooks`**: Custom hooks for client-side state and data fetching (e.g., `use-products`, `use-session`, `use-client-cart`).
+- **`src/components`**: Modular component library categorized by domain (`ui`, `storefront`, `dashboard`, `auth`).
 
-- **`/app`**: The core of the Next.js application, containing all routes, UI components, and business logic.
-  - **`/app/(storefront)`**: Routes and components for the customer-facing storefront.
-  - **`/app/dashboard`**: Routes and components for the admin dashboard.
-  - **`/app/api`**: API routes for handling server-side logic, such as authentication, payment processing, and file uploads.
-  - **`/app/components`**: Reusable React components used throughout the application.
-  - **`/app/lib`**: Utility functions, database connection, and other shared modules.
-- **`/components`**: Additional UI components, particularly those from Shadcn UI.
-- **`/lib`**: General utility functions.
-- **`/prisma`**: Prisma schema and database-related files.
-- **`/public`**: Static assets, such as images and fonts.
+## 3. Key Systems
 
-## 3. Database Schema
+### 3.1. Authentication (Better Auth)
+Archcool uses **Better Auth** for robust security. Supported strategies include:
+- **Email & Password**: Traditional login with secure hashing.
+- **Google OAuth**: Social sign-in integration.
+- **Magic Link**: Passwordless authentication via email.
+- **OTP (One-Time Password)**: Enhanced security for sensitive actions.
 
-The database schema is defined in `/prisma/schema.prisma` and includes the following models:
+### 3.2. Database & Schema
+The database is powered by **PostgreSQL** and managed via **Prisma**.
+Key models include:
+- `User`: Profiles, roles (Admin/User), and session data.
+- `Product`: Comprehensive product data (name, description, price, images, category, inventory).
+- `Order`: Transaction history, shipping status, and Stripe payment references.
+- `Banner`: Dynamic promotional content for the storefront.
 
-- **`User`**: Stores user information, including name, email, and profile image.
-- **`Product`**: Represents a product in the store, with fields for name, description, price, images, and category.
-- **`Order`**: Tracks customer orders, including order details, payment information, and shipping status.
-- **`Banner`**: Manages promotional banners displayed on the storefront.
+### 3.3. Payment Processing (Stripe)
+The platform integrates **Stripe Checkout** for secure transactions.
+- **Webhooks**: A dedicated endpoint (`/api/stripe/webhook`) handles asynchronous events like `checkout.session.completed` to update order statuses and trigger confirmation emails.
 
-## 4. Authentication Flow
+### 3.4. File Management (UploadThing)
+Product images and banners are managed via **UploadThing**. This provides a secure, serverless way to handle file uploads with automatic optimization and cloud storage.
 
-User authentication is handled by Kinde. When a user signs up or logs in, Kinde creates a new user record in the database and manages their session. The application uses Kinde's server-side helpers to protect routes and access user information.
+### 3.5. Search & Optimization
+- **Search**: Integrated **MiniSearch** provides blazing-fast, client-side full-text search across the product catalog.
+- **Images**: Custom image optimization scripts and Next.js `Image` component ensure minimal layout shift and fast load times.
 
-## 5. Payment Processing
+## 4. Administrative Workflow
 
-Stripe is integrated for secure payment processing. When a user proceeds to checkout, the application creates a Stripe Checkout session and redirects the user to the Stripe payment page. After the payment is completed, Stripe sends a webhook to the application to confirm the order and update its status.
+Administrators have access to a dedicated dashboard to:
+- **Product Management**: Create, update, and delete products with real-time image previews.
+- **Order Tracking**: Monitor sales, update shipping statuses, and view customer details.
+- **Content Management**: Update homepage banners and promotional content dynamically.
 
-## 6. File Uploads
+## 5. Development & Maintenance
 
-Product images are uploaded using UploadThing. The application provides a secure endpoint for uploading files, which are then stored in a cloud storage bucket. The URLs of the uploaded images are saved in the `Product` model.
+Utility scripts located in `scripts/` assist with:
+- `admin:setup`: Quickly creating or promoting admin users.
+- `optimize:images`: Pre-processing assets for production.
+- `db:check`: Verifying database connectivity and health.
 
-## 7. Deployment
-
-The application is designed to be deployed on a modern hosting platform like Vercel or Netlify. The deployment process involves connecting the Git repository, configuring environment variables, and running the build command.
-
-This documentation provides a high-level overview of the Archcool e-commerce platform. For more detailed information, please refer to the source code and the documentation of the individual technologies used in the project.
+---
+For more detailed implementation guides, refer to the files in the `docs/` directory.
