@@ -4,7 +4,7 @@ import { admin } from "better-auth/plugins";
 import { multiSession } from "better-auth/plugins";
 import { emailOTP } from "better-auth/plugins";
 import { magicLink } from "better-auth/plugins";
-import prisma from "../app/lib/db";
+import prisma from "./db";
 // Remove direct import of emailService to avoid Edge Runtime issues
 
 export const auth = betterAuth({
@@ -73,7 +73,7 @@ export const auth = betterAuth({
     sendResetPassword: async ({ user, url, token }, request) => {
       try {
         // Dynamic import to avoid Edge Runtime issues
-        const { emailService } = await import("../app/lib/email");
+        const { emailService } = await import("./email");
         // Construct the reset link (ensure it points to the correct frontend route)
         const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/reset-password?token=${token}`;
         await emailService.sendMagicLink(user.email, resetUrl);
@@ -126,7 +126,7 @@ export const auth = betterAuth({
       async sendVerificationOTP({ email, otp, type }) {
         try {
           // Dynamic import to avoid Edge Runtime issues
-          const { emailService } = await import("../app/lib/email");
+          const { emailService } = await import("./email");
           // "change-email" is a new type in better-auth v1.5; treat it like email-verification
           const emailType = (type === "change-email" ? "email-verification" : type) as
             | "sign-in"
@@ -145,7 +145,7 @@ export const auth = betterAuth({
       async sendMagicLink({ email, url }) {
         try {
           // Dynamic import to avoid Edge Runtime issues
-          const { emailService } = await import("../app/lib/email");
+          const { emailService } = await import("./email");
           await emailService.sendMagicLink(email, url);
         } catch (error) {
           console.error(`❌ Failed to send magic link to ${email}:`, error);
@@ -154,4 +154,4 @@ export const auth = betterAuth({
       },
     }),
   ],
-}); 
+});

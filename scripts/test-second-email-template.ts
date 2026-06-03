@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 
 // Test script for the second email template (otpPasswordReset)
-import { emailService } from "../src/app/lib/email";
+import { emailService } from "../src/lib/email";
 
 async function testSecondEmailTemplate() {
   console.log("🧪 Testing second email template (OTP Password Reset)...");

@@ -22,7 +22,6 @@ if (fs.existsSync(envPath)) {
     if (process.env[key] === undefined) process.env[key] = value;
   }
 }
-
 // Use a fresh instance for seeding (Prisma 7 requires adapter or accelerateUrl).
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });

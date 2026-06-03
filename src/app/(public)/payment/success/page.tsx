@@ -32,6 +32,13 @@ function PaymentSuccessContent() {
           if (!session?.user && !data.order.userId && data.metadata?.createAccount === "true") {
             setShowAccountCreation(true);
           }
+
+          // Clear server-side cart if user is logged in
+          if (session?.user) {
+            fetch(`/api/cart/${session.user.id}`, { method: "POST" }).catch(err => 
+              console.error("Failed to clear server cart:", err)
+            );
+          }
         } else {
           toast.error("Could not verify payment");
         }

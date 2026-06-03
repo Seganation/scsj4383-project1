@@ -1,5 +1,5 @@
 // Simple admin creation using Prisma
-import prisma from "../src/app/lib/db";
+import prisma from "../src/lib/db";
 
 async function makeUserAdmin(email: string) {
   try {

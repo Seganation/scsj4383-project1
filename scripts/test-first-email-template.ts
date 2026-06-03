@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 
 // Test script for the first email template (otpSignIn)
-import { emailService } from "../src/app/lib/email";
+import { emailService } from "../src/lib/email";
 
 async function testFirstEmailTemplate() {
   console.log("🧪 Testing first email template (OTP Sign-In)...");

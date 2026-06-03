@@ -3,8 +3,8 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { parseWithZod } from "@conform-to/zod/v4";
-import { bannerSchema, productSchema } from "./lib/zodSchemas";
-import prisma from "./lib/db";
+import { bannerSchema, productSchema } from "@/lib/zodSchemas";
+import prisma from "@/lib/db";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { headers } from "next/headers";
 import { UTApi } from "uploadthing/server";
@@ -45,8 +45,8 @@ export async function createProduct(prevState: unknown, formData: FormData) {
     return submission.reply();
   }
 
-  const flattenUrls = submission.value.images.flatMap((urlString) =>
-    urlString.split(",").map((url) => url.trim())
+  const flattenUrls = submission.value.images.flatMap((urlString: string) =>
+    urlString.split(",").map((url: string) => url.trim())
   );
 
   await prisma.product.create({
@@ -79,8 +79,8 @@ export async function editProduct(prevState: any, formData: FormData) {
     return submission.reply();
   }
 
-  const flattenUrls = submission.value.images.flatMap((urlString) =>
-    urlString.split(",").map((url) => url.trim())
+  const flattenUrls = submission.value.images.flatMap((urlString: string) =>
+    urlString.split(",").map((url: string) => url.trim())
   );
 
   const productId = formData.get("productId") as string;

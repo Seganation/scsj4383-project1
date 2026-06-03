@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { createSlug, generateUniqueSlug } from "../src/app/lib/slug-utils";
+import { createSlug, generateUniqueSlug } from "../src/lib/slug-utils";
 
 const prisma = new PrismaClient();
 
