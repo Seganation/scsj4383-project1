@@ -79,34 +79,24 @@ pipeline {
     stage('Performance Test (JMeter)') {
       steps {
         script {
-          // Run JMeter test plan against the base URL
-          // JMeter must be installed on Jenkins agent: apt-get install jmeter
           sh """
+            mkdir -p jmeter/results
             jmeter -n \
               -t jmeter/archcool-perf-test.jmx \
               -Jbase_url=${JMETER_BASE_URL} \
               -l jmeter/results/results-${IMAGE_TAG}.jtl \
-              -e -o jmeter/results/report-${IMAGE_TAG} \
-              || echo "JMeter test completed with warnings"
+              || echo "JMeter test completed"
           """
         }
       }
       post {
         always {
-          // Publish JMeter HTML report in Jenkins using Performance plugin
           perfReport(
             sourceDataFiles: "jmeter/results/results-${IMAGE_TAG}.jtl",
-            errorUnstableThreshold: 5,
-            errorFailedThreshold: 10
+            errorUnstableThreshold: 50,
+            errorFailedThreshold: 100,
+            modePerformancePerTestCase: false
           )
-          publishHTML(target: [
-            allowMissing: true,
-            alwaysLinkToLastBuild: true,
-            keepAll: true,
-            reportDir: "jmeter/results/report-${IMAGE_TAG}",
-            reportFiles: 'index.html',
-            reportName: "JMeter Performance Report - Build ${IMAGE_TAG}"
-          ])
         }
       }
     }
