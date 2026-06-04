@@ -4,6 +4,7 @@
 **Application:** Archcool — Commercial Kitchen Equipment E-Commerce Platform  
 **Repository:** https://github.com/Seganation/scsj4383-project1  
 **File under analysis:** `src/app/actions.ts`
+**Group members:** Rawa Dara, Parwar Yassin, Karoz Rebaz, Aland Fryad
 
 ---
 

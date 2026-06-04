@@ -4,6 +4,7 @@
 **Application:** Archcool — Commercial Kitchen Equipment E-Commerce Platform  
 **Repository:** https://github.com/Seganation/scsj4383-project1  
 **Docker Hub:** https://hub.docker.com/r/rawadararadha/archcool
+**Group members:** Rawa Dara, Parwar Yassin, Karoz Rebaz, Aland Fryad
 
 ---
 
@@ -42,8 +43,10 @@ Team members and the course instructor were invited as collaborators:
 
 | Role | Access Level |
 |---|---|
-| Project Lead (student) | Admin |
-| Team Members | Developer |
+| Rawa Dara | Admin / Project Lead |
+| Parwar Yassin | Developer |
+| Karoz Rebaz | Developer |
+| Aland Fryad | Developer |
 | Course Instructor | Viewer / Collaborator |
 
 **Steps to invite:**

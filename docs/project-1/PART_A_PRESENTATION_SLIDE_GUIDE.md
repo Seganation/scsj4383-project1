@@ -36,7 +36,7 @@ Include:
 
 - Course: SCSJ4383 / SCJ4383 Software Construction
 - Project: Archcool E-Commerce Platform
-- Team member names
+- Team members: Rawa Dara, Parwar Yassin, Karoz Rebaz, Aland Fryad
 - GitHub link: `https://github.com/Seganation/scsj4383-project1`
 
 ### Slide 2 — DevOps Architecture Overview
