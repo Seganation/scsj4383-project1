@@ -95,6 +95,12 @@ Screenshot:
 
 - Jenkins `archcool` job page or Build #24 page
 
+Use this uploaded screenshot if no separate Jenkins job config screenshot is available:
+
+```text
+https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtfJPAigUj0hsmQGNqKWSToyUrEvk57w1Z4unM
+```
+
 Proof bullets:
 
 - Jenkins job connected to GitHub repository
@@ -166,6 +172,12 @@ Proof bullets:
 Screenshot:
 
 - Jira issue page, for example `ARCH-1`, showing activity/comment or issue status
+
+Use this uploaded screenshot:
+
+```text
+https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt3RGMIG7Tyhd7zQDjxaJeog5p9kVRYL8uNrmW
+```
 
 Proof bullets:
 
