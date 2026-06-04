@@ -9,7 +9,7 @@
 
 ## 1. Source Code Under Analysis
 
-The file `src/app/actions.ts` contains Next.js Server Actions — server-side functions invoked directly from client-side forms. It handles creating, editing, and deleting products and banners, as well as validating admin sessions.
+The file `src/app/actions.ts` contains Next.js Server Actions, which are server-side functions called from forms in the application. In this project, the file handles product and banner changes and also checks whether the current user is an authenticated admin.
 
 Before refactoring, the file had **four distinct code smells** across 185 lines.
 
@@ -20,7 +20,7 @@ Before refactoring, the file had **four distinct code smells** across 185 lines.
 ### Smell 1 — Duplicate Code (Fowler: "Duplicated Code")
 
 **Location:** `createProduct()` lines 48–50 and `editProduct()` lines 82–84  
-**Category:** Duplicate Code — the most common and costly code smell  
+**Category:** Duplicate Code
 
 **Before (duplicated identically in two functions):**
 ```typescript
@@ -36,12 +36,12 @@ const flattenUrls = submission.value.images.flatMap((urlString: string) =>
 ```
 
 **Why this is a smell:**  
-If the image URL parsing logic needs to change (e.g., to filter empty strings or support different delimiters), it must be updated in two separate places. Missing one causes a silent inconsistency — a classic maintenance bug.
+If the image URL parsing logic changes later, for example to filter empty strings or support another delimiter, the same edit would have to be made in two places. If one location is missed, product creation and product editing could behave differently.
 
 **Detection method:**  
 - Manual code review: visually scanning for blocks with >3 lines of identical logic
 - Static analysis tools: SonarQube "Duplications" metric; ESLint `no-duplicate-code` rules; IntelliJ IDEA "Duplicate code fragment" inspection
-- Pattern: two functions with the same private computation is a signal to extract
+- Pattern: when two functions do the same small calculation, it is usually better to extract it
 
 ---
 
@@ -56,12 +56,12 @@ isFeatured: submission.value.isFeatured === true ? true : false,
 ```
 
 **Why this is a smell:**  
-`x === true ? true : false` is logically equivalent to `Boolean(x)`. The ternary adds noise and suggests the author was unsure about the type. It inflates cognitive load with zero functional value.
+`x === true ? true : false` gives the same result as `Boolean(x)`. The ternary version is longer and makes the code look more complicated than it is.
 
 **Detection method:**  
 - ESLint rule: `no-unneeded-ternary` — flags exactly this pattern
 - TypeScript compiler: the ternary's branches are both `boolean` literals with the same shape as the condition result
-- Code review checklist: "Does this conditional produce a value different from its condition?" If no → simplify
+- Code review check: if the conditional only returns `true` or `false`, simplify it
 
 ---
 
@@ -81,7 +81,7 @@ export async function createProduct(prevState: unknown, formData: FormData) {
 ```
 
 **Why this is a smell:**  
-`any` disables TypeScript's type checker for the `prevState` parameter and all operations on it. This is especially problematic in Server Actions where `prevState` carries form submission state from the previous render cycle. Using `unknown` forces explicit type narrowing before use, preserving type safety. The inconsistency between `createProduct` (using `unknown`) and `editProduct` (using `any`) also signals an accidental oversight.
+`any` disables TypeScript checking for the `prevState` parameter. This is risky in Server Actions because `prevState` carries form state between submissions. Using `unknown` is safer because the code must narrow the value before using it. The file also already used `unknown` in `createProduct()`, so `editProduct()` should follow the same pattern.
 
 **Detection method:**  
 - TypeScript compiler flag: `"noImplicitAny": true` in `tsconfig.json`
@@ -104,12 +104,12 @@ revalidatePath("/");
 ```
 
 **Why this is a smell:**  
-If a new route is added (e.g., a sitemap or an RSS feed that depends on products), the developer must remember to add `revalidatePath("/sitemap.xml")` in three separate places. Missing any one causes stale data in production. This is a textbook "shotgun surgery" scenario: one logical change requires edits in multiple places.
+If a new product-related route is added later, such as a sitemap, the developer would need to update the same revalidation list in three functions. Missing one of those places could leave stale data in production.
 
 **Detection method:**  
 - Code review: search for repeated groups of 3+ consecutive identical statements across functions
 - SonarQube: code duplication block detection (threshold: 3+ duplicate lines)
-- Pattern recognition: if multiple functions all end with the same group of statements, extract to a helper
+- Pattern: if several functions end with the same group of statements, extract that group to a helper
 
 ---
 
@@ -117,7 +117,7 @@ If a new route is added (e.g., a sitemap or an RSS feed that depends on products
 
 ### Method 1 — Extract Function (for Smells 1 and 4)
 
-**Definition:** Replace duplicated code with a call to a named function that encapsulates the logic.
+**Definition:** Replace duplicated code with a call to a named helper function.
 
 **Applied to Smell 1** (duplicate image URL parsing):
 ```typescript
@@ -153,7 +153,7 @@ function revalidateProductPaths() {
 revalidateProductPaths();
 ```
 
-**Benefit:** Adding a new path to invalidate now requires changing one line in one place.
+**Benefit:** If a new path needs to be revalidated later, it only has to be added in one helper function.
 
 ---
 
@@ -169,7 +169,7 @@ isFeatured: submission.value.isFeatured === true ? true : false,
 isFeatured: Boolean(submission.value.isFeatured),
 ```
 
-`Boolean(x)` is idiomatic TypeScript/JavaScript for converting any value to its boolean equivalent. It is shorter, more readable, and does not imply uncertainty about the type.
+`Boolean(x)` is the normal TypeScript/JavaScript way to convert a value to a boolean. It is shorter and easier to read.
 
 ---
 
@@ -185,7 +185,7 @@ export async function editProduct(prevState: any, formData: FormData)
 export async function editProduct(prevState: unknown, formData: FormData)
 ```
 
-`unknown` is the type-safe counterpart of `any`. It accepts any value at call-site but forces the recipient to narrow the type before using it, keeping the compiler's guarantees intact.
+`unknown` is safer than `any`. It still allows any value to be passed in, but the function has to check the value before using it.
 
 ---
 
@@ -322,7 +322,7 @@ export async function editProduct(prevState: unknown, formData: FormData) { // �
 
 ## 5. BONUS — Performance Comparison
 
-To verify the refactoring did not introduce regressions, the application was rebuilt and TypeScript type-checking was re-run.
+To check that the refactoring did not break the project, the application was rebuilt and TypeScript type-checking was run again.
 
 ### TypeScript Compilation
 
@@ -347,7 +347,7 @@ pnpm tsc --noEmit
 | Verbose ternary expressions | 2 | 0 |
 | Named helper functions | 0 | 2 |
 
-The line count reduction from 185 to 162 is a secondary effect of the Extract Function refactorings; the primary gain is that future changes to image parsing or cache invalidation now have a single point of modification.
+The line count went from 185 to 162. That is useful, but the bigger improvement is that image parsing and product cache revalidation now each have one place to change.
 
 ---
 
@@ -371,4 +371,4 @@ Four code smells were identified in `src/app/actions.ts`:
 3. **Implicit `any` Type** — `prevState: any` → changed to `prevState: unknown`
 4. **Repeated Code Block** — 4 identical `revalidatePath` calls in 3 functions → extracted to `revalidateProductPaths()`
 
-After refactoring: TypeScript compiles with 0 errors, the file is 23 lines shorter, and every future change to product cache invalidation or image URL parsing requires editing exactly one function.
+After refactoring, TypeScript compiles with 0 errors, the file is 23 lines shorter, and future changes to image URL parsing or product cache invalidation only need to be made in one function.

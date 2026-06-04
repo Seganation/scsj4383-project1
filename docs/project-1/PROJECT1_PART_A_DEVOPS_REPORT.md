@@ -13,6 +13,7 @@
 |---|---|
 | GitHub source code | https://github.com/Seganation/scsj4383-project1 |
 | Docker Hub image repository | https://hub.docker.com/r/rawadararadha/archcool |
+| Part A video presentation | `TODO: add YouTube or Google Drive video link after recording` |
 | Latest successful Jenkins build | `http://localhost:8080/job/archcool/24/` |
 | Jenkins JMeter artifact | `http://localhost:8080/job/archcool/24/artifact/jmeter/results/results-24.jtl` |
 | Public JMeter artifact upload | https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtWcTceJ9bdTuhprQJKlM8we7DAjnNfkx5UYX0 |
@@ -21,7 +22,7 @@
 
 ## Executive Summary
 
-This report documents the complete DevOps pipeline for the Archcool web application. The pipeline integrates **Jira** (project management), **GitHub** (source control), **Jenkins** (CI/CD automation), **JMeter** (performance testing), and **Docker** (containerisation) into a unified workflow. Every code push to the `main` branch triggers an automated sequence: lint → build → performance test → Docker image creation → Docker Hub push → Jira issue update.
+This report explains how the DevOps pipeline was set up for the Archcool web application. The project uses **Jira** for task tracking, **GitHub** for source control, **Jenkins** for CI/CD, **JMeter** for performance testing, and **Docker** for packaging and delivery. A push to the `main` branch runs linting, builds the app, runs the JMeter test, creates a Docker image, pushes it to Docker Hub, and updates the linked Jira issue.
 
 ---
 
@@ -60,12 +61,12 @@ Team members and the course instructor were invited as collaborators:
 
 ### 1.4 Jira–Jenkins Integration
 
-The Jira plugin for Jenkins was installed to enable two-way sync:
+The Jira plugin for Jenkins was installed so Jenkins could send build updates back to Jira:
 - Jenkins automatically comments on Jira issues when a build succeeds or fails
 - Issue status is transitioned (e.g., "In Progress" → "In Review") upon successful build
 - Integration configured via **Jira Software Cloud** plugin in Jenkins → **Manage Jenkins** → **Configure System** → **Jira Software Cloud Integration**
 
-Commit messages follow the convention `ARCH-XX: description` so the Jenkinsfile can extract the issue key with:
+Commit messages follow the convention `ARCH-XX: description` so the Jenkinsfile can find the Jira issue key with:
 ```bash
 git log -1 --pretty=%B | grep -oE 'ARCH-[0-9]+'
 ```
@@ -293,7 +294,7 @@ jmeter/archcool-perf-test.jmx
 | Products API | `GET /api/products?category=grills` | 20 | 5 | HTTP 200 |
 | Orders API | `GET /api/orders` (no auth) | 5 | 3 | HTTP 401 |
 
-**Performance threshold:** All requests must complete within **3000ms** (enforced by `DurationAssertion`).
+**Performance threshold:** All requests must finish within **3000ms**. This is checked using `DurationAssertion`.
 
 ### 6.3 Running JMeter Manually
 
@@ -526,17 +527,17 @@ The artifact is listed as `jmeter/results/results-24.jtl`. If the sidebar link i
 
 ## 11. Final Submission Checklist
 
-According to the Project 1 brief:
+Based on the Project 1 brief:
 
 | Deliverable | Status |
 |---|---|
 | Part A presentation slide for items 1-8 | Required — create from the evidence in this report |
-| Part A video presentation for items 1-8 | Required — record Jira, GitHub, Jenkins, JMeter artifact, Docker Hub, and teammate Docker pull/run |
+| Part A video presentation for items 1-8 | Required — record Jira, GitHub, Jenkins, JMeter artifact, Docker Hub, and teammate Docker pull/run. Link placeholder is in the Submission Links section. |
 | Part A source code | Ready — submit GitHub link: `https://github.com/Seganation/scsj4383-project1` |
 | Part B documentation PDF | Required — export `docs/project-1/PROJECT1_PART_B_CODE_SMELLS_REPORT.md` to PDF |
 | Part B source code | Ready — submit GitHub link: `https://github.com/Seganation/scsj4383-project1` |
 
-Remaining work: create the Part A presentation slides from the evidence in this report, record the required video presentation, and export the Part A/Part B reports to PDF if the instructor requires report PDFs.
+Remaining work: create the Part A presentation slides, record the video presentation, paste the video link into the placeholder above, and export the Part A/Part B reports to PDF if the instructor wants report PDFs.
 
 ---
 
