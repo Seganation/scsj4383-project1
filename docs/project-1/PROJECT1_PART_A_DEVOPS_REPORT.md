@@ -434,18 +434,66 @@ Developer pushes commit (ARCH-XX: message)
 
 ## 10. Evidence Checklist (Screenshots Required in Video)
 
-| # | Evidence Item | Where to Show |
+| # | Evidence Item | Screenshot |
 |---|---|---|
-| 1 | Jira project board with issues | Jira cloud dashboard |
-| 2 | Team members + instructor invited | Jira Project Settings → Access |
-| 3 | GitHub repo with collaborators | GitHub Settings → Collaborators |
-| 4 | Jenkins dashboard with pipeline | `http://localhost:8080` |
-| 5 | Jenkins plugins installed | Manage Jenkins → Plugins → Installed |
-| 6 | Successful pipeline run | Jenkins build → Console Output |
-| 7 | JMeter report in Jenkins | Jenkins build → JMeter Performance Report |
-| 8 | Docker image on Docker Hub | hub.docker.com/r/rawadararadha/archcool |
-| 9 | Jira issue comment from Jenkins | Jira issue activity log |
-| 10 | Team member docker pull + run | Terminal on second machine |
+| 1 | Jira project board — ARCH-1 to ARCH-5 Done | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtNwerbSTMoBn2alEbgPFGpC9T5Sdqj4LIYAit) |
+| 2 | Jira team members (5 members) | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtLv7UC6OZz8EPXpoJ0COBjkvDwFVLUlHINRxf) |
+| 3 | Jira space access — all members with roles | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtxqpH33y7qpO2v63MUCW0EZfm5xd9HKgbokPz) |
+| 4 | Jira ARCH-1 issue detail | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt3RGMIG7Tyhd7zQDjxaJeog5p9kVRYL8uNrmW) |
+| 5 | Jenkins Build #15 status (SUCCESS) | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOte79GCL5RMbVQgrzdyhu8j7vYqf9NUKn3CxIE) |
+| 6 | Jenkins console output (top) | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHycnM3fTrpM8Wh0RunFbl1mQaGYNftZDiXLj) |
+| 7 | Jenkins console output — Finished: SUCCESS | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtUD1RlljBEQbxouklWaFdAD90qZ1VwGHORY74) |
+| 8 | Docker Hub — rawadararadha/archcool tags overview | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOttmI7suKcWiIorUPlZ62N4DL1O3XkA9e7RxCt) |
+| 9 | Docker Hub — tags :15 and :latest detail | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtkyVL7uHi2oQ3zAK1feM7TWtZbkhOV5NRG0q9) |
+| 10 | GitHub collaborators | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHnL2F7fTrpM8Wh0RunFbl1mQaGYNftZDiXLj) |
+| 11 | Team member docker pull + run | *pending — teammate machine required* |
+
+### 10.1 Jenkins Build #15 — Artifacts (JTL file)
+
+The JMeter `.jtl` results file is archived as a Jenkins build artifact.
+
+**How to view:** `http://localhost:8080/job/archcool/15/` -> click **Build Artifacts** in the left sidebar.
+The artifact is listed as `jmeter/results/results-15.jtl`. If the sidebar link is not visible, open:
+`http://localhost:8080/job/archcool/15/artifact/jmeter/results/results-15.jtl`
+
+> **Note:** Jenkins artifact pages require a live Jenkins session (`http://localhost:8080`) — they are not externally accessible. Start Jenkins with `docker start jenkins` then navigate to the build to view.
+
+---
+
+## Appendix A — Screenshots
+
+### A1. Jenkins Build #15 Status
+![Jenkins Build #15 Status](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOte79GCL5RMbVQgrzdyhu8j7vYqf9NUKn3CxIE)
+
+### A2. Jenkins Console Output (top)
+![Jenkins Console Output top](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHycnM3fTrpM8Wh0RunFbl1mQaGYNftZDiXLj)
+
+### A3. Jenkins Console Output — Finished: SUCCESS
+![Jenkins Console Finished SUCCESS](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtUD1RlljBEQbxouklWaFdAD90qZ1VwGHORY74)
+
+### A4. Docker Hub — Tags Overview
+![Docker Hub tags overview](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOttmI7suKcWiIorUPlZ62N4DL1O3XkA9e7RxCt)
+
+### A5. Docker Hub — Tags :15 and :latest
+![Docker Hub tags 15 latest](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtkyVL7uHi2oQ3zAK1feM7TWtZbkhOV5NRG0q9)
+
+### A6. Jira Board — All Issues Done
+![Jira Board](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtNwerbSTMoBn2alEbgPFGpC9T5Sdqj4LIYAit)
+
+### A7. Jira Team Members (4)
+![Jira Team Members 4](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtaN1bAFecvQkxC2bNzXJyn9ufW3EA8s0BSLRl)
+
+### A8. Jira Team Members (5)
+![Jira Team Members 5](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtLv7UC6OZz8EPXpoJ0COBjkvDwFVLUlHINRxf)
+
+### A9. Jira Space Access — Members and Roles
+![Jira Space Access](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtxqpH33y7qpO2v63MUCW0EZfm5xd9HKgbokPz)
+
+### A10. Jira ARCH-1 Issue Detail
+![Jira ARCH-1](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt3RGMIG7Tyhd7zQDjxaJeog5p9kVRYL8uNrmW)
+
+### A11. GitHub Collaborators
+![GitHub Collaborators](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHnL2F7fTrpM8Wh0RunFbl1mQaGYNftZDiXLj)
 
 ---
 
