@@ -179,17 +179,6 @@ pipeline {
       }
     }
 
-    stage('Deploy Trigger (Coolify)') {
-      when {
-        branch 'main'
-      }
-      steps {
-        withCredentials([string(credentialsId: 'coolify-webhook', variable: 'COOLIFY_HOOK')]) {
-          sh 'curl -fsSL -X POST "$COOLIFY_HOOK"'
-        }
-      }
-    }
-
   }
 
   post {
