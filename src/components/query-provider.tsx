@@ -1,10 +1,18 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import dynamic from "next/dynamic";
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import { queryClient } from "@/lib/query-client";
+
+const ReactQueryDevtools = dynamic(
+  () =>
+    import("@tanstack/react-query-devtools").then((m) => ({
+      default: m.ReactQueryDevtools,
+    })),
+  { ssr: false }
+);
 
 interface QueryProviderProps {
   children: React.ReactNode;

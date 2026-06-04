@@ -1,9 +1,22 @@
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   // Required for Docker deployment (Dockerfile uses .next/standalone)
   output: "standalone",
-  // Package import optimization for faster builds
+  // Turbopack resolves the `types` condition of @uploadthing packages,
+  // pulling in .d.cts declaration files as modules → transpilePackages forces
+  // SWC to own the transpilation and use only the `import` condition instead.
+  transpilePackages: [
+    "uploadthing",
+    "@uploadthing/react",
+    "@uploadthing/shared",
+    "@uploadthing/mime-types",
+  ],
   experimental: {
     optimizePackageImports: [
       "@radix-ui/react-avatar",
@@ -17,12 +30,10 @@ const nextConfig = {
       "@radix-ui/react-slot",
       "@radix-ui/react-switch",
       "@radix-ui/react-tabs",
-      "@uploadthing/react",
       "lucide-react",
       "react-icons",
       "framer-motion",
       "recharts",
-      "@tanstack/react-query",
     ],
   },
 
@@ -88,6 +99,23 @@ const nextConfig = {
         ],
       },
     ];
+  },
+
+  webpack(config) {
+    // pnpm creates separate node_modules copies per peer-dep hash, so react-query-devtools
+    // gets its own @tanstack/react-query instance (different QueryClientContext object).
+    // Alias both to the canonical path to merge all instances into one.
+    const tanstackRQ = path.resolve(
+      __dirname,
+      "node_modules/.pnpm/@tanstack+react-query@5.99.0_react@19.1.0/node_modules/@tanstack/react-query"
+    );
+    const tanstackQCore = path.resolve(
+      __dirname,
+      "node_modules/.pnpm/@tanstack+query-core@5.99.0/node_modules/@tanstack/query-core"
+    );
+    config.resolve.alias["@tanstack/react-query"] = tanstackRQ;
+    config.resolve.alias["@tanstack/query-core"] = tanstackQCore;
+    return config;
   },
 };
 
