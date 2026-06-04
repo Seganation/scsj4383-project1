@@ -38,9 +38,10 @@ pipeline {
     stage('Setup Node + pnpm') {
       steps {
         sh '''
-          node -v || (echo "Node missing on agent" && exit 1)
+          node -v
+          npm install -g corepack@latest 2>/dev/null || true
           corepack enable
-          corepack prepare pnpm@9.0.0 --activate
+          corepack prepare pnpm@9.0.0 --activate || npm install -g pnpm@9
           pnpm -v
         '''
       }
