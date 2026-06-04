@@ -46,7 +46,7 @@ pipeline {
 
     stage('Install Dependencies') {
       steps {
-        sh 'pnpm install --frozen-lockfile'
+        sh 'pnpm install --frozen-lockfile --network-concurrency 4'
       }
     }
 
