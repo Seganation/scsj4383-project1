@@ -55,8 +55,8 @@ Work through these in order. Each step depends on the previous.
 
 ### Step 3 — Docker Hub Account
 
-- [ ] Create account at https://hub.docker.com (username: `noblerawa`)
-- [ ] Create repository: `noblerawa/archcool` (public)
+- [ ] Create account at https://hub.docker.com (username: `rawadararadha`)
+- [ ] Create repository: `rawadararadha/archcool` (public)
 - [ ] Generate access token: **Account Settings** → **Security** → **New Access Token**
 - [ ] Save the token — you'll need it for Jenkins
 
@@ -106,7 +106,7 @@ Go to **Manage Jenkins** → **Plugins** → **Available plugins**, search and i
 - [ ] Add Docker Hub credentials:
   - Kind: `Username with password`
   - ID: `dockerhub-creds`
-  - Username: `noblerawa`
+  - Username: `rawadararadha`
   - Password: your Docker Hub access token
 
 - [ ] Add Jira credentials:
@@ -163,7 +163,7 @@ jmeter -v  # verify
 - [ ] Watch **Console Output** — wait for all stages to pass
 - [ ] Screenshot: green pipeline with all stages
 - [ ] Screenshot: JMeter Performance Report tab in the build
-- [ ] Check Docker Hub — image should appear as `noblerawa/archcool:1`
+- [ ] Check Docker Hub — image should appear as `rawadararadha/archcool:1`
 
 ### Step 12 — Verify Jira Update
 
@@ -176,7 +176,7 @@ jmeter -v  # verify
 On a **different machine** (or ask a team member):
 
 ```bash
-docker pull noblerawa/archcool:latest
+docker pull rawadararadha/archcool:latest
 docker run -d \
   --name archcool-test \
   -p 3000:3000 \
@@ -187,7 +187,7 @@ docker run -d \
   -e NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_placeholder" \
   -e UPLOADTHING_TOKEN="placeholder" \
   -e NEXT_PUBLIC_APP_URL="http://localhost:3000" \
-  noblerawa/archcool:latest
+  rawadararadha/archcool:latest
 ```
 
 - [ ] Screenshot: `docker pull` output
@@ -233,7 +233,7 @@ If you want me to automate more:
 
 | Service | What For | How to Provide |
 |---|---|---|
-| Docker Hub | Auto-push images from CI | Already in Jenkinsfile as `noblerawa/archcool` |
+| Docker Hub | Auto-push images from CI | Already in Jenkinsfile as `rawadararadha/archcool` |
 | Jira | Auto-create issues, transitions | Share Jira API token + site URL |
 | Jenkins | Trigger builds, view logs | Share Jenkins URL + API token |
 

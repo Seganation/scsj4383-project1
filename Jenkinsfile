@@ -16,14 +16,14 @@ pipeline {
   }
 
   environment {
-    DOCKERHUB_REPO  = "noblerawa/archcool"
+    DOCKERHUB_REPO  = "rawadararadha/archcool"
     IMAGE_TAG       = "${env.BUILD_NUMBER}"
     NODE_VERSION    = "22"
     // Base URL for JMeter performance tests (set to staging or localhost)
     JMETER_BASE_URL = "${env.JMETER_TARGET_URL ?: 'http://localhost:3000'}"
     // Jira project key for issue tracking
     JIRA_PROJECT    = "ARCH"
-    JIRA_SITE       = "archcool.atlassian.net"
+    JIRA_SITE       = "uniq-team-u87tsq5m.atlassian.net"
   }
 
   stages {

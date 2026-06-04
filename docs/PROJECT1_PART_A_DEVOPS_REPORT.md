@@ -3,7 +3,7 @@
 **Semester:** II 2021/2022  
 **Application:** Archcool — Commercial Kitchen Equipment E-Commerce Platform  
 **Repository:** https://github.com/Seganation/scsj4383-project1  
-**Docker Hub:** https://hub.docker.com/r/noblerawa/archcool
+**Docker Hub:** https://hub.docker.com/r/rawadararadha/archcool
 
 ---
 
@@ -21,7 +21,7 @@ This report documents the complete DevOps pipeline for the Archcool web applicat
 - **Project name:** Archcool
 - **Project key:** `ARCH`
 - **Project type:** Scrum
-- **URL:** `https://archcool.atlassian.net/jira/software/projects/ARCH`
+- **URL:** `https://uniq-team-u87tsq5m.atlassian.net/jira/software/projects/ARCH`
 
 ### 1.2 Team Collaboration
 
@@ -191,12 +191,12 @@ stage('Update Jira Issue') {
       if (issueKey) {
         jiraComment(
           idOrKey: issueKey,
-          site: 'archcool.atlassian.net',
-          body: "Build #${env.BUILD_NUMBER} PASSED. Docker: noblerawa/archcool:${env.BUILD_NUMBER}"
+          site: 'uniq-team-u87tsq5m.atlassian.net',
+          body: "Build #${env.BUILD_NUMBER} PASSED. Docker: rawadararadha/archcool:${env.BUILD_NUMBER}"
         )
         jiraTransitionIssue(
           idOrKey: issueKey,
-          site: 'archcool.atlassian.net',
+          site: 'uniq-team-u87tsq5m.atlassian.net',
           input: [transition: [id: '31']] // "In Review"
         )
       }
@@ -339,7 +339,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
 docker build \
   --build-arg NEXT_PUBLIC_APP_VERSION=1.0.0 \
   --build-arg NEXT_PUBLIC_BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ) \
-  -t noblerawa/archcool:latest \
+  -t rawadararadha/archcool:latest \
   .
 ```
 
@@ -347,18 +347,18 @@ docker build \
 
 | Tag | Description |
 |---|---|
-| `noblerawa/archcool:latest` | Most recent build |
-| `noblerawa/archcool:<build-number>` | Jenkins build number (e.g., `:42`) |
-| `noblerawa/archcool:<git-sha>` | Short commit SHA (e.g., `:3e567c3`) |
+| `rawadararadha/archcool:latest` | Most recent build |
+| `rawadararadha/archcool:<build-number>` | Jenkins build number (e.g., `:42`) |
+| `rawadararadha/archcool:<git-sha>` | Short commit SHA (e.g., `:3e567c3`) |
 
 ### 7.4 Pushing to Docker Hub
 
 ```bash
 # In Jenkins pipeline (automated):
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-docker push noblerawa/archcool:latest
-docker push noblerawa/archcool:$BUILD_NUMBER
-docker push noblerawa/archcool:$(cat .git_sha)
+docker push rawadararadha/archcool:latest
+docker push rawadararadha/archcool:$BUILD_NUMBER
+docker push rawadararadha/archcool:$(cat .git_sha)
 ```
 
 ---
@@ -369,7 +369,7 @@ Any team member or the instructor can pull and run the application from Docker H
 
 ```bash
 # Pull the latest image
-docker pull noblerawa/archcool:latest
+docker pull rawadararadha/archcool:latest
 
 # Run the container with required environment variables
 docker run -d \
@@ -382,7 +382,7 @@ docker run -d \
   -e NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="pk_test_..." \
   -e UPLOADTHING_TOKEN="eyJ..." \
   -e NEXT_PUBLIC_APP_URL="http://localhost:3000" \
-  noblerawa/archcool:latest
+  rawadararadha/archcool:latest
 
 # Check health
 curl http://localhost:3000/api/health
@@ -423,11 +423,11 @@ Developer pushes commit (ARCH-XX: message)
            │                          │
            ▼                          ▼
     Docker Hub                   Jira Issue
-    noblerawa/archcool            ARCH-XX status
+    rawadararadha/archcool            ARCH-XX status
     :latest / :42 / :3e567c3     → "In Review"
            │
            ▼
-    Team member: docker pull noblerawa/archcool:latest
+    Team member: docker pull rawadararadha/archcool:latest
 ```
 
 ---
@@ -443,7 +443,7 @@ Developer pushes commit (ARCH-XX: message)
 | 5 | Jenkins plugins installed | Manage Jenkins → Plugins → Installed |
 | 6 | Successful pipeline run | Jenkins build → Console Output |
 | 7 | JMeter report in Jenkins | Jenkins build → JMeter Performance Report |
-| 8 | Docker image on Docker Hub | hub.docker.com/r/noblerawa/archcool |
+| 8 | Docker image on Docker Hub | hub.docker.com/r/rawadararadha/archcool |
 | 9 | Jira issue comment from Jenkins | Jira issue activity log |
 | 10 | Team member docker pull + run | Terminal on second machine |
 
