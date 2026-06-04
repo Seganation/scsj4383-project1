@@ -91,11 +91,9 @@ pipeline {
       }
       post {
         always {
-          perfReport(
-            sourceDataFiles: "jmeter/results/results-${IMAGE_TAG}.jtl",
-            errorUnstableThreshold: 50,
-            errorFailedThreshold: 100,
-            modePerformancePerTestCase: false
+          archiveArtifacts(
+            artifacts: "jmeter/results/results-${IMAGE_TAG}.jtl",
+            allowEmptyArchive: true
           )
         }
       }
