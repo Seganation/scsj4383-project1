@@ -46,7 +46,10 @@ pipeline {
 
     stage('Install Dependencies') {
       steps {
-        sh 'pnpm install --frozen-lockfile --network-concurrency 4'
+        sh '''
+          pnpm install --frozen-lockfile --network-concurrency 4 --ignore-scripts
+          pnpm exec prisma generate
+        '''
       }
     }
 
