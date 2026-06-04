@@ -4,6 +4,7 @@ export default [
   {
     ignores: [
       ".next/**",
+      ".tools/**",
       "node_modules/**",
       "prisma/generated/**",
       "generated/**",
