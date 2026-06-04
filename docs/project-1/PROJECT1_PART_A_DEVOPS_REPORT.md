@@ -440,9 +440,9 @@ Developer pushes commit (ARCH-XX: message)
 | 2 | Jira team members (5 members) | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtLv7UC6OZz8EPXpoJ0COBjkvDwFVLUlHINRxf) |
 | 3 | Jira space access — all members with roles | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtxqpH33y7qpO2v63MUCW0EZfm5xd9HKgbokPz) |
 | 4 | Jira ARCH-1 issue detail | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt3RGMIG7Tyhd7zQDjxaJeog5p9kVRYL8uNrmW) |
-| 5 | Jenkins Build #15 status (SUCCESS) | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOte79GCL5RMbVQgrzdyhu8j7vYqf9NUKn3CxIE) |
-| 6 | Jenkins console output (top) | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHycnM3fTrpM8Wh0RunFbl1mQaGYNftZDiXLj) |
-| 7 | Jenkins console output — Finished: SUCCESS | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtUD1RlljBEQbxouklWaFdAD90qZ1VwGHORY74) |
+| 5 | Jenkins Build #24 status (SUCCESS) with JMeter artifact | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtfJPAigUj0hsmQGNqKWSToyUrEvk57w1Z4unM) |
+| 6 | Jenkins Build #24 artifacts directory — `results-24.jtl` | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtUVzRrOnjBEQbxouklWaFdAD90qZ1VwGHORY7) |
+| 7 | Downloaded JMeter artifact — `results-24.jtl` | [download](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtWcTceJ9bdTuhprQJKlM8we7DAjnNfkx5UYX0) |
 | 8 | Docker Hub — rawadararadha/archcool tags overview | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOttmI7suKcWiIorUPlZ62N4DL1O3XkA9e7RxCt) |
 | 9 | Docker Hub — tags :15 and :latest detail | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtkyVL7uHi2oQ3zAK1feM7TWtZbkhOV5NRG0q9) |
 | 10 | GitHub collaborators | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHnL2F7fTrpM8Wh0RunFbl1mQaGYNftZDiXLj) |
@@ -462,42 +462,64 @@ The artifact is listed as `jmeter/results/results-24.jtl`. If the sidebar link i
 
 ## Appendix A — Screenshots
 
-### A1. Jenkins Build #15 Status
-![Jenkins Build #15 Status](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOte79GCL5RMbVQgrzdyhu8j7vYqf9NUKn3CxIE)
+### A1. Jenkins Build #24 Status and Artifact
+![Jenkins Build #24 Status and Artifact](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtfJPAigUj0hsmQGNqKWSToyUrEvk57w1Z4unM)
 
-### A2. Jenkins Console Output (top)
+### A2. Jenkins Build #24 Artifacts Directory
+![Jenkins Build #24 Artifacts Directory](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtUVzRrOnjBEQbxouklWaFdAD90qZ1VwGHORY7)
+
+### A3. Downloaded JMeter Results Artifact
+[Download `results-24.jtl`](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtWcTceJ9bdTuhprQJKlM8we7DAjnNfkx5UYX0)
+
+### A4. Jenkins Console Output (top)
 ![Jenkins Console Output top](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHycnM3fTrpM8Wh0RunFbl1mQaGYNftZDiXLj)
 
-### A3. Jenkins Console Output — Finished: SUCCESS
+### A5. Jenkins Console Output — Finished: SUCCESS
 ![Jenkins Console Finished SUCCESS](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtUD1RlljBEQbxouklWaFdAD90qZ1VwGHORY74)
 
-### A4. Docker Hub — Tags Overview
+### A6. Docker Hub — Tags Overview
 ![Docker Hub tags overview](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOttmI7suKcWiIorUPlZ62N4DL1O3XkA9e7RxCt)
 
-### A5. Docker Hub — Tags :15 and :latest
+### A7. Docker Hub — Tags :15 and :latest
 ![Docker Hub tags 15 latest](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtkyVL7uHi2oQ3zAK1feM7TWtZbkhOV5NRG0q9)
 
-### A6. Jira Board — All Issues Done
+### A8. Jira Board — All Issues Done
 ![Jira Board](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtNwerbSTMoBn2alEbgPFGpC9T5Sdqj4LIYAit)
 
-### A7. Jira Team Members (4)
+### A9. Jira Team Members (4)
 ![Jira Team Members 4](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtaN1bAFecvQkxC2bNzXJyn9ufW3EA8s0BSLRl)
 
-### A8. Jira Team Members (5)
+### A10. Jira Team Members (5)
 ![Jira Team Members 5](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtLv7UC6OZz8EPXpoJ0COBjkvDwFVLUlHINRxf)
 
-### A9. Jira Space Access — Members and Roles
+### A11. Jira Space Access — Members and Roles
 ![Jira Space Access](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtxqpH33y7qpO2v63MUCW0EZfm5xd9HKgbokPz)
 
-### A10. Jira ARCH-1 Issue Detail
+### A12. Jira ARCH-1 Issue Detail
 ![Jira ARCH-1](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt3RGMIG7Tyhd7zQDjxaJeog5p9kVRYL8uNrmW)
 
-### A11. GitHub Collaborators
+### A13. GitHub Collaborators
 ![GitHub Collaborators](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHnL2F7fTrpM8Wh0RunFbl1mQaGYNftZDiXLj)
 
 ---
 
-## 11. References
+## 11. Final Submission Checklist
+
+According to the Project 1 brief:
+
+| Deliverable | Status |
+|---|---|
+| Part A presentation slide for items 1-8 | Required — create from the evidence in this report |
+| Part A video presentation for items 1-8 | Required — record Jira, GitHub, Jenkins, JMeter artifact, Docker Hub, and teammate Docker pull/run |
+| Part A source code | Ready — submit GitHub link: `https://github.com/Seganation/scsj4383-project1` |
+| Part B documentation PDF | Required — export `docs/project-1/PROJECT1_PART_B_CODE_SMELLS_REPORT.md` to PDF |
+| Part B source code | Ready — submit GitHub link: `https://github.com/Seganation/scsj4383-project1` |
+
+Remaining external evidence: the teammate still needs to run `docker pull rawadararadha/archcool:latest` on their own workstation and provide screenshots of the pull output, running container, and browser/app access.
+
+---
+
+## 12. References
 
 1. Humble, J. & Farley, D. (2010). *Continuous Delivery*. Addison-Wesley.
 2. Jenkins Documentation. https://www.jenkins.io/doc/

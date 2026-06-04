@@ -1,7 +1,7 @@
 # Project 1 — Full Session Knowledge
 **Subject:** SCSJ4383 Software Construction  
 **Group Project** — Part A (10%) + Part B (5%)  
-**Last updated:** 2026-06-04 | Build #15 = SUCCESS
+**Last updated:** 2026-06-04 | Build #24 = SUCCESS
 
 ---
 
@@ -25,7 +25,7 @@ Everything below was automated. You do not need to redo any of it.
 | Jira issues | Created | ARCH-1 through ARCH-5 on `uniq-team-u87tsq5m.atlassian.net` |
 | Jira–Jenkins link | Configured | Site `uniq-team-u87tsq5m.atlassian.net`, credential `jira-api-token` |
 
-### Pipeline Status — Build #15 (SUCCESS)
+### Pipeline Status — Build #24 (SUCCESS)
 All stages green, overall result = **SUCCESS**:
 ```
 ✓ Checkout
@@ -33,14 +33,14 @@ All stages green, overall result = **SUCCESS**:
 ✓ Install Dependencies  (pnpm --frozen-lockfile --network-concurrency 4 --ignore-scripts + prisma generate)
 ✓ Lint
 ✓ Build (Next.js)
-✓ Performance Test (JMeter)   → JTL archived as artifact
+✓ Performance Test (JMeter)   → `results-24.jtl` archived as artifact
 ✓ Docker Build
-✓ Docker Push                 → rawadararadha/archcool:15 + :latest on Docker Hub
+✓ Docker Push                 → rawadararadha/archcool:24 + :latest on Docker Hub
 ✓ Update Jira Issue
 ✓ Post Actions
 ```
 
-Docker Hub images available: `:15`, `:latest` (and earlier `:10`–`:14`)
+Docker Hub images available: `:24`, `:latest` (and earlier `:10`–`:15`)
 
 ### Key Fixes Made to Jenkinsfile
 | Problem | Fix |
@@ -49,6 +49,10 @@ Docker Hub images available: `:15`, `:latest` (and earlier `:10`–`:14`)
 | pnpm DNS overload (750 parallel downloads) | `--network-concurrency 4` |
 | `napi-postinstall` pnpm compat error | `--ignore-scripts` on pnpm install |
 | JMeter `-e` flag not supported (apt version) | Removed `-e -o` flags |
+| Jenkins apt JMeter too old for the test plan | Pipeline downloads and uses Apache JMeter 5.6.3 in `.tools/` |
+| JMeter JSONPath plugin not available in vanilla JMeter | Removed JSONPath assertion/extractor from the test plan |
+| `.tools/` caused lint to scan JMeter bundled JavaScript | Added `.tools/**` to ESLint ignores |
+| Next 16 defaulted to Turbopack while `next.config.mjs` has webpack config | Changed build script to `next build --webpack` |
 | `perfReport()` marking build FAILED (100% errors, localhost unreachable) | Replaced with `archiveArtifacts` |
 | docker: not found in Jenkins | Installed Docker CE CLI, chmod 666 docker.sock |
 
@@ -82,7 +86,7 @@ JENKINS_ADMIN=admin / admin123
 **Cloudflare tunnel** — the GitHub webhook currently points to a temporary cloudflare URL (`https://restored-charity-samba-liked.trycloudflare.com`). This dies when the terminal running `cloudflared` is closed.
 
 **Impact:** GitHub push → webhook → Jenkins auto-trigger stops working.  
-**Not needed for submission** — you already have Build #15 green. Just trigger builds manually from Jenkins UI if needed.
+**Not needed for submission** — you already have Build #24 green. Just trigger builds manually from Jenkins UI if needed.
 
 **To re-enable:** `cloudflared tunnel --url http://localhost:8080 --no-autoupdate` then update webhook URL in GitHub repo Settings → Webhooks.
 
@@ -108,10 +112,11 @@ JENKINS_ADMIN=admin / admin123
 - [ ] Submit to E-Learning: PDF + GitHub link `https://github.com/Seganation/scsj4383-project1`
 
 #### Project 1 Part A (10%) — Screenshots you can take solo
-- [ ] `http://localhost:8080` → open `archcool` pipeline → screenshot green Build #15
-- [ ] Jenkins Build #15 → Console Output → screenshot (shows all stages)
-- [ ] Jenkins Build #15 → Artifacts → screenshot (shows JTL file)
-- [ ] `https://hub.docker.com/r/rawadararadha/archcool/tags` → screenshot (shows :15, :latest)
+- [x] `http://localhost:8080` → open `archcool` pipeline → screenshot green Build #24
+- [x] Jenkins Build #24 → Artifacts → screenshot (shows `results-24.jtl`)
+- [x] Downloaded/uploaded `results-24.jtl` artifact evidence
+- [ ] Jenkins Build #24 → Console Output → optional fresh screenshot (the old Build #15 console screenshots are already uploaded)
+- [ ] `https://hub.docker.com/r/rawadararadha/archcool/tags` → optional fresh screenshot (shows :24, :latest)
 - [ ] `https://uniq-team-u87tsq5m.atlassian.net/jira/core/projects/ARCH/board` → screenshot (shows ARCH-1 to ARCH-5)
 - [ ] Invite instructor to Jira (Project Settings → Access → Add people → Viewer)
 - [ ] Invite instructor to GitHub repo (Settings → Collaborators → Add → Read)
@@ -147,8 +152,8 @@ Assignment requires showing all 8 of these:
 | 1 | Jira project board with all 5 issues | `https://uniq-team-u87tsq5m.atlassian.net/jira/core/projects/ARCH/board` |
 | 2 | Jira project members (you + teammates) | Jira → Project Settings → Access |
 | 3 | GitHub repo + collaborators list | `https://github.com/Seganation/scsj4383-project1/settings/access` |
-| 4 | Jenkins pipeline — green Build #15 | `http://localhost:8080/job/archcool/15/` |
-| 5 | Jenkins Build #15 console output | `http://localhost:8080/job/archcool/15/console` |
+| 4 | Jenkins pipeline — green Build #24 | `http://localhost:8080/job/archcool/24/` |
+| 5 | Jenkins Build #24 artifacts / console output | `http://localhost:8080/job/archcool/24/` |
 | 6 | Docker Hub `rawadararadha/archcool` tags | `https://hub.docker.com/r/rawadararadha/archcool/tags` |
 | 7 | Jira issue ARCH-1 with Jenkins comment | Open ARCH-1 → Activity section |
 | 8 | Teammate machine: docker pull + app running | Teammate's screen |
@@ -161,7 +166,8 @@ Assignment requires showing all 8 of these:
 
 - [ ] Video MP4 (< 2 min, < 200MB) showing 8 items above
 - [ ] GitHub link: `https://github.com/Seganation/scsj4383-project1`
-- [ ] Report PDF: convert `docs/project-1/PROJECT1_PART_A_DEVOPS_REPORT.md` to PDF
+- [ ] Presentation slide for Part A items 1-8
+- [ ] Report PDF: convert `docs/project-1/PROJECT1_PART_A_DEVOPS_REPORT.md` to PDF if your instructor expects a written report in addition to the required slides/video
 - [ ] Submit all to E-Learning
 
 ---
