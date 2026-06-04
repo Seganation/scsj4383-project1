@@ -448,13 +448,13 @@ Developer pushes commit (ARCH-XX: message)
 | 10 | GitHub collaborators | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHnL2F7fTrpM8Wh0RunFbl1mQaGYNftZDiXLj) |
 | 11 | Team member docker pull + run | *pending — teammate machine required* |
 
-### 10.1 Jenkins Build #15 — Artifacts (JTL file)
+### 10.1 Jenkins Build #24 — Artifacts (JTL file)
 
 The JMeter `.jtl` results file is archived as a Jenkins build artifact.
 
-**How to view:** `http://localhost:8080/job/archcool/15/` -> click **Build Artifacts** in the left sidebar.
-The artifact is listed as `jmeter/results/results-15.jtl`. If the sidebar link is not visible, open:
-`http://localhost:8080/job/archcool/15/artifact/jmeter/results/results-15.jtl`
+**How to view:** `http://localhost:8080/job/archcool/24/` -> click **Build Artifacts** in the left sidebar.
+The artifact is listed as `jmeter/results/results-24.jtl`. If the sidebar link is not visible, open:
+`http://localhost:8080/job/archcool/24/artifact/jmeter/results/results-24.jtl`
 
 > **Note:** Jenkins artifact pages require a live Jenkins session (`http://localhost:8080`) — they are not externally accessible. Start Jenkins with `docker start jenkins` then navigate to the build to view.
 
