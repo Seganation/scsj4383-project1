@@ -45,6 +45,9 @@ pipeline {
     }
 
     stage('Install Dependencies') {
+      environment {
+        DATABASE_URL = "postgresql://placeholder:placeholder@localhost:5432/placeholder"
+      }
       steps {
         sh '''
           pnpm install --frozen-lockfile --network-concurrency 4 --ignore-scripts
