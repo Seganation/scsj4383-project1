@@ -124,7 +124,7 @@ JENKINS_ADMIN=admin / admin123
 ### Needs Teammate
 
 #### Project 1 Part A — Team evidence
-- [ ] **Teammate runs docker pull on their machine:**
+- [x] **Teammate ran docker pull on their machine:**
   ```bash
   docker pull rawadararadha/archcool:latest
   docker run -d --name archcool-test -p 3001:3000 \
@@ -137,7 +137,9 @@ JENKINS_ADMIN=admin / admin123
     -e NEXT_PUBLIC_APP_URL="http://localhost:3001" \
     rawadararadha/archcool:latest
   ```
-  - Screenshots needed: `docker pull` output, `docker ps` running, browser at `http://localhost:3001`
+  - Docker pull screenshot: `https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt2bZubPp3elSdszaMfthqr4ORJDIv8K1pBU0c`
+  - Running container screenshot: `https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtMXkUXiaNFJOtgeGox3QfkZSH7aC9qnVAMUKs`
+  - Browser/app screenshot: `https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtjJnC02w4M6sQhDRB5KAr1ZEauJPH90iSdqvg`
 - [ ] Add teammates as GitHub collaborators (Settings → Collaborators → Write)
 - [ ] Screenshot Jira board showing teammates as members
 

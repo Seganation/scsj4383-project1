@@ -458,7 +458,7 @@ Developer pushes commit (ARCH-XX: message)
 | 8 | Docker Hub — tags `:24`, `:latest`, and commit tag | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt7NsgqvBRUq0iFjEAQpmzwd12xcMyZXNTvnCK) |
 | 9 | Docker Hub — earlier tags `:15` and `:latest` detail | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtkyVL7uHi2oQ3zAK1feM7TWtZbkhOV5NRG0q9) |
 | 10 | GitHub collaborators | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHnL2F7fTrpM8Wh0RunFbl1mQaGYNftZDiXLj) |
-| 11 | Team member docker pull + run | *pending — teammate machine required* |
+| 11 | Team member Docker pull + run | [pull](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt2bZubPp3elSdszaMfthqr4ORJDIv8K1pBU0c), [container](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtMXkUXiaNFJOtgeGox3QfkZSH7aC9qnVAMUKs), [browser](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtjJnC02w4M6sQhDRB5KAr1ZEauJPH90iSdqvg) |
 
 ### 10.1 Jenkins Build #24 — Artifacts (JTL file)
 
@@ -513,6 +513,15 @@ The artifact is listed as `jmeter/results/results-24.jtl`. If the sidebar link i
 ### A13. GitHub Collaborators
 ![GitHub Collaborators](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHnL2F7fTrpM8Wh0RunFbl1mQaGYNftZDiXLj)
 
+### A14. Teammate Docker Pull
+![Teammate Docker Pull](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt2bZubPp3elSdszaMfthqr4ORJDIv8K1pBU0c)
+
+### A15. Teammate Docker Container Running
+![Teammate Docker Container Running](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtMXkUXiaNFJOtgeGox3QfkZSH7aC9qnVAMUKs)
+
+### A16. Teammate Browser App Running
+![Teammate Browser App Running](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtjJnC02w4M6sQhDRB5KAr1ZEauJPH90iSdqvg)
+
 ---
 
 ## 11. Final Submission Checklist
@@ -527,7 +536,7 @@ According to the Project 1 brief:
 | Part B documentation PDF | Required — export `docs/project-1/PROJECT1_PART_B_CODE_SMELLS_REPORT.md` to PDF |
 | Part B source code | Ready — submit GitHub link: `https://github.com/Seganation/scsj4383-project1` |
 
-Remaining external evidence: the teammate still needs to run `docker pull rawadararadha/archcool:latest` on their own workstation and provide screenshots of the pull output, running container, and browser/app access.
+Remaining work: create the Part A presentation slides from the evidence in this report, record the required video presentation, and export the Part A/Part B reports to PDF if the instructor requires report PDFs.
 
 ---
 

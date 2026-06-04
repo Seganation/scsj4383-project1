@@ -179,7 +179,20 @@ Screenshot:
 
 - Teammate terminal showing `docker pull rawadararadha/archcool:latest`
 - Teammate terminal showing `docker ps`
-- Teammate browser showing app at `http://localhost:3001`
+- Teammate browser showing the app running locally
+
+Use these uploaded screenshots:
+
+```text
+Docker pull:
+https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt2bZubPp3elSdszaMfthqr4ORJDIv8K1pBU0c
+
+Running container:
+https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtMXkUXiaNFJOtgeGox3QfkZSH7aC9qnVAMUKs
+
+Browser app:
+https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtjJnC02w4M6sQhDRB5KAr1ZEauJPH90iSdqvg
+```
 
 Proof bullets:
 
@@ -187,7 +200,7 @@ Proof bullets:
 - The image started on another workstation
 - Docker distribution requirement satisfied
 
-This slide is pending until the teammate sends screenshots.
+This slide is ready now that the teammate Docker pull/run screenshots are uploaded.
 
 ### Slide 12 — Final Submission Summary
 
