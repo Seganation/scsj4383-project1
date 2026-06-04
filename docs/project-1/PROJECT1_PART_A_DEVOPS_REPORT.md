@@ -7,6 +7,18 @@
 
 ---
 
+## Submission Links
+
+| Item | Link |
+|---|---|
+| GitHub source code | https://github.com/Seganation/scsj4383-project1 |
+| Docker Hub image repository | https://hub.docker.com/r/rawadararadha/archcool |
+| Latest successful Jenkins build | `http://localhost:8080/job/archcool/24/` |
+| Jenkins JMeter artifact | `http://localhost:8080/job/archcool/24/artifact/jmeter/results/results-24.jtl` |
+| Public JMeter artifact upload | https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtWcTceJ9bdTuhprQJKlM8we7DAjnNfkx5UYX0 |
+
+---
+
 ## Executive Summary
 
 This report documents the complete DevOps pipeline for the Archcool web application. The pipeline integrates **Jira** (project management), **GitHub** (source control), **Jenkins** (CI/CD automation), **JMeter** (performance testing), and **Docker** (containerisation) into a unified workflow. Every code push to the `main` branch triggers an automated sequence: lint → build → performance test → Docker image creation → Docker Hub push → Jira issue update.
@@ -443,8 +455,8 @@ Developer pushes commit (ARCH-XX: message)
 | 5 | Jenkins Build #24 status (SUCCESS) with JMeter artifact | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtfJPAigUj0hsmQGNqKWSToyUrEvk57w1Z4unM) |
 | 6 | Jenkins Build #24 artifacts directory — `results-24.jtl` | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtUVzRrOnjBEQbxouklWaFdAD90qZ1VwGHORY7) |
 | 7 | Downloaded JMeter artifact — `results-24.jtl` | [download](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtWcTceJ9bdTuhprQJKlM8we7DAjnNfkx5UYX0) |
-| 8 | Docker Hub — rawadararadha/archcool tags overview | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOttmI7suKcWiIorUPlZ62N4DL1O3XkA9e7RxCt) |
-| 9 | Docker Hub — tags :15 and :latest detail | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtkyVL7uHi2oQ3zAK1feM7TWtZbkhOV5NRG0q9) |
+| 8 | Docker Hub — tags `:24`, `:latest`, and commit tag | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt7NsgqvBRUq0iFjEAQpmzwd12xcMyZXNTvnCK) |
+| 9 | Docker Hub — earlier tags `:15` and `:latest` detail | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtkyVL7uHi2oQ3zAK1feM7TWtZbkhOV5NRG0q9) |
 | 10 | GitHub collaborators | [view](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtHnL2F7fTrpM8Wh0RunFbl1mQaGYNftZDiXLj) |
 | 11 | Team member docker pull + run | *pending — teammate machine required* |
 
@@ -477,10 +489,10 @@ The artifact is listed as `jmeter/results/results-24.jtl`. If the sidebar link i
 ### A5. Jenkins Console Output — Finished: SUCCESS
 ![Jenkins Console Finished SUCCESS](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtUD1RlljBEQbxouklWaFdAD90qZ1VwGHORY74)
 
-### A6. Docker Hub — Tags Overview
-![Docker Hub tags overview](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOttmI7suKcWiIorUPlZ62N4DL1O3XkA9e7RxCt)
+### A6. Docker Hub — Build #24, Latest, and Commit Tags
+![Docker Hub Build 24 latest tags](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOt7NsgqvBRUq0iFjEAQpmzwd12xcMyZXNTvnCK)
 
-### A7. Docker Hub — Tags :15 and :latest
+### A7. Docker Hub — Earlier Tags :15 and :latest
 ![Docker Hub tags 15 latest](https://targ83lmc5.ufs.sh/f/MXvbYT8NFJOtkyVL7uHi2oQ3zAK1feM7TWtZbkhOV5NRG0q9)
 
 ### A8. Jira Board — All Issues Done

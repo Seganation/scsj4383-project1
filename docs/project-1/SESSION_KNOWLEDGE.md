@@ -183,6 +183,8 @@ docs/
     SESSION_KNOWLEDGE.md       ← this file
     PROJECT1_PART_A_DEVOPS_REPORT.md
     PROJECT1_PART_B_CODE_SMELLS_REPORT.md
+    TEAMMATE_DOCKER_PULL_SCREENSHOT_INSTRUCTIONS.md
+    PART_A_PRESENTATION_SLIDE_GUIDE.md
     JENKINS_CICD_REPORT.md
     MANUAL_STEPS.md
   app/                   ← Codebase-level docs (auth, stripe, orders, etc.)
