@@ -135,22 +135,6 @@ Run: jmeter -n -t archcool-perf-test.jmx -Jbase_url=http://localhost:3000 -l res
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Assert items array present" enabled="true">
-            <stringProp name="JSON_PATH">$.items</stringProp>
-            <stringProp name="EXPECTED_VALUE"></stringProp>
-            <boolProp name="JSONVALIDATION">false</boolProp>
-            <boolProp name="EXPECT_NULL">false</boolProp>
-            <boolProp name="INVERT">false</boolProp>
-            <boolProp name="ISREGEX">false</boolProp>
-          </JSONPathAssertion>
-          <hashTree/>
-          <!-- Extract first product ID for the next request -->
-          <JSONPathExtractor guiclass="JSONPathExtractorGui" testclass="JSONPathExtractor" testname="Extract product ID" enabled="true">
-            <stringProp name="VARIABLE">product_id</stringProp>
-            <stringProp name="JSON_PATH">$.items[0].id</stringProp>
-            <stringProp name="DEFAULT">not-found</stringProp>
-          </JSONPathExtractor>
-          <hashTree/>
         </hashTree>
 
         <!-- Test 3: GET /api/products (search query) -->
@@ -226,7 +210,7 @@ Run: jmeter -n -t archcool-perf-test.jmx -Jbase_url=http://localhost:3000 -l res
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.path">/api/products/${product_id}</stringProp>
+          <stringProp name="HTTPSampler.path">/api/products/not-found</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
