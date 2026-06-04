@@ -80,12 +80,25 @@ pipeline {
       steps {
         script {
           sh """
+            JMETER_VERSION=5.6.3
+            JMETER_HOME=.tools/apache-jmeter-\$JMETER_VERSION
+            JMETER_BIN=\$JMETER_HOME/bin/jmeter
+
+            if [ ! -x "\$JMETER_BIN" ]; then
+              mkdir -p .tools
+              curl -fsSL "https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-\$JMETER_VERSION.tgz" \
+                -o ".tools/apache-jmeter-\$JMETER_VERSION.tgz"
+              tar -xzf ".tools/apache-jmeter-\$JMETER_VERSION.tgz" -C .tools
+            fi
+
             mkdir -p jmeter/results
-            jmeter -n \
+            "\$JMETER_BIN" -n \
               -t jmeter/archcool-perf-test.jmx \
               -Jbase_url=${JMETER_BASE_URL} \
               -l jmeter/results/results-${IMAGE_TAG}.jtl \
               || echo "JMeter test completed"
+
+            test -f jmeter/results/results-${IMAGE_TAG}.jtl
           """
         }
       }
