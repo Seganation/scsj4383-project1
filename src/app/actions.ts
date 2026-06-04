@@ -10,6 +10,21 @@ import { headers } from "next/headers";
 import { UTApi } from "uploadthing/server";
 const utapi = new UTApi();
 
+// Extracted: was duplicated identically in createProduct and editProduct
+function parseImageUrls(images: string[]): string[] {
+  return images.flatMap((urlString) =>
+    urlString.split(",").map((url) => url.trim())
+  );
+}
+
+// Extracted: same 4 revalidatePath calls repeated in every product mutation
+function revalidateProductPaths() {
+  revalidatePath("/dashboard/products");
+  revalidatePath("/products");
+  revalidatePath("/api/products");
+  revalidatePath("/");
+}
+
 async function getAuthenticatedAdminUser() {
   const session = await auth.api.getSession({
     headers: await headers(),
@@ -45,30 +60,23 @@ export async function createProduct(prevState: unknown, formData: FormData) {
     return submission.reply();
   }
 
-  const flattenUrls = submission.value.images.flatMap((urlString: string) =>
-    urlString.split(",").map((url: string) => url.trim())
-  );
-
   await prisma.product.create({
     data: {
       name: submission.value.name,
       description: submission.value.description,
       status: submission.value.status,
       price: submission.value.price,
-      images: flattenUrls,
+      images: parseImageUrls(submission.value.images),
       category: { connect: { slug: submission.value.category } },
-      isFeatured: submission.value.isFeatured === true ? true : false,
+      isFeatured: Boolean(submission.value.isFeatured),
     },
   });
 
-  revalidatePath("/dashboard/products");
-  revalidatePath("/products");
-  revalidatePath("/api/products");
-  revalidatePath("/");
+  revalidateProductPaths();
   redirect("/dashboard/products");
 }
 
-export async function editProduct(prevState: any, formData: FormData) {
+export async function editProduct(prevState: unknown, formData: FormData) {
   await getAuthenticatedAdminUser();
 
   const submission = parseWithZod(formData, {
@@ -79,50 +87,35 @@ export async function editProduct(prevState: any, formData: FormData) {
     return submission.reply();
   }
 
-  const flattenUrls = submission.value.images.flatMap((urlString: string) =>
-    urlString.split(",").map((url: string) => url.trim())
-  );
-
+  const flattenUrls = parseImageUrls(submission.value.images);
   const productId = formData.get("productId") as string;
-  // Get original images from hidden field
   const originalImages = ((formData.get("originalImages") as string) || "")
     .split(",")
     .map((url) => url.trim())
     .filter(Boolean);
-  // Find removed images
   const removedImages = originalImages.filter(
     (img) => !flattenUrls.includes(img)
   );
 
   await prisma.product.update({
-    where: {
-      id: productId,
-    },
+    where: { id: productId },
     data: {
       name: submission.value.name,
       description: submission.value.description,
       category: { connect: { slug: submission.value.category } },
       price: submission.value.price,
-      isFeatured: submission.value.isFeatured === true ? true : false,
+      isFeatured: Boolean(submission.value.isFeatured),
       status: submission.value.status,
       images: flattenUrls,
     },
   });
 
-  // Delete removed images from UploadThing
   if (removedImages.length > 0) {
-    // Extract file keys from URLs (last part after last slash)
-    const fileKeys = removedImages.map((url) => {
-      const parts = url.split("/");
-      return parts[parts.length - 1];
-    });
+    const fileKeys = removedImages.map((url) => url.split("/").at(-1)!);
     await utapi.deleteFiles(fileKeys);
   }
 
-  revalidatePath("/dashboard/products");
-  revalidatePath("/products");
-  revalidatePath("/api/products");
-  revalidatePath("/");
+  revalidateProductPaths();
   redirect("/dashboard/products");
 }
 
@@ -130,15 +123,10 @@ export async function deleteProduct(formData: FormData) {
   await getAuthenticatedAdminUser();
 
   await prisma.product.delete({
-    where: {
-      id: formData.get("productId") as string,
-    },
+    where: { id: formData.get("productId") as string },
   });
 
-  revalidatePath("/dashboard/products");
-  revalidatePath("/products");
-  revalidatePath("/api/products");
-  revalidatePath("/");
+  revalidateProductPaths();
   redirect("/dashboard/products");
 }
 
